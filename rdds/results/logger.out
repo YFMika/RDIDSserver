@@ -1,0 +1,1606 @@
+call with args: Namespace(base_lr=1e-06, batchsize_per_gpu=8, checkpoint_dir='results', clip_gradient=0.1, dataset_num_workers=4, eval_every_iteration=300, gpu='0', hidden_channels=128, hidden_dims=128, in_channels=3, in_dim=50176, is_pretrain=False, log_every=10, loss_classes_weight=5, loss_severity_weight=5, max_epoch=200, num_blocks=2, num_classes=5, num_severity=4, out_channels=64, shortcut=False, start_epoch=0, stride=1, weight_decay=0.0)
+Detection(
+  (classify): Classification(
+    (block0): LargeBackBone(
+      (backbone): BackBone(
+        (conv1): Conv2d(3, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+        (bottlenecks): Sequential(
+          (0): BottleNeck(
+            (branch2a): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (branch2b): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (branch2c): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (short): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (act): ReLU()
+          )
+          (1): BottleNeck(
+            (branch2a): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (branch2b): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (branch2c): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (short): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (act): ReLU()
+          )
+        )
+        (conv2): Conv2d(512, 3, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+      (norm): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (pool): AvgPool2d(kernel_size=2, stride=2, padding=0)
+    (block1): BackBone(
+      (conv1): Conv2d(3, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+      (bottlenecks): Sequential(
+        (0): BottleNeck(
+          (branch2a): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (branch2b): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (branch2c): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (short): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (act): ReLU()
+        )
+        (1): BottleNeck(
+          (branch2a): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (branch2b): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (branch2c): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (short): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (act): ReLU()
+        )
+      )
+      (conv2): Conv2d(512, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    )
+    (block2): BackBone(
+      (conv1): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+      (bottlenecks): Sequential(
+        (0): BottleNeck(
+          (branch2a): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (branch2b): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (branch2c): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (short): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (act): ReLU()
+        )
+        (1): BottleNeck(
+          (branch2a): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (branch2b): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (branch2c): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (short): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (act): ReLU()
+        )
+      )
+      (conv2): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    )
+    (block3): BackBone(
+      (conv1): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+      (bottlenecks): Sequential(
+        (0): BottleNeck(
+          (branch2a): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (branch2b): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (branch2c): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (short): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (act): ReLU()
+        )
+        (1): BottleNeck(
+          (branch2a): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (branch2b): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (branch2c): Conv2d(512, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (short): Conv2d(512, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (act): ReLU()
+        )
+      )
+      (conv2): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    )
+    (fpn): PANBlock(
+      (toplayer): ModuleList(
+        (0): ConvBN(
+          (conv): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (act): SiLU()
+        )
+        (1): ConvBN(
+          (conv): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (act): SiLU()
+        )
+        (2): ConvBN(
+          (conv): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (act): SiLU()
+        )
+      )
+      (lateral_convs): ModuleList(
+        (0-2): 3 x ConvBN(
+          (conv): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (act): SiLU()
+        )
+      )
+      (bottom_up_convs): ModuleList(
+        (0-2): 3 x ConvBN(
+          (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+          (bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (act): SiLU()
+        )
+      )
+    )
+    (flatten): Flatten(start_dim=1, end_dim=-1)
+  )
+  (classify_head): Classify_head(
+    (mlp): SimpleMLP(
+      (linear1): Linear(in_features=50176, out_features=128, bias=True)
+      (act): ReLU()
+      (linear2): Linear(in_features=128, out_features=5, bias=True)
+    )
+  )
+  (classify_severity): Classify_severity(
+    (mlp): SimpleOrdinalMLP(
+      (linear1): Linear(in_features=50181, out_features=128, bias=True)
+      (act): ReLU()
+      (linear2): OrdinalRegressionHead(
+        (logits): Linear(in_features=128, out_features=3, bias=False)
+      )
+    )
+  )
+  (criterion): OverallCriterion(
+    (loss): Criterion(
+      (criterion_classes): BCEWithLogitsLoss()
+      (criterion_severity): CrossEntropyLoss()
+    )
+  )
+)
+call with args: Namespace(base_lr=1e-06, batchsize_per_gpu=8, checkpoint_dir='results', clip_gradient=0.1, dataset_num_workers=4, eval_every_iteration=300, gpu='0', hidden_channels=128, hidden_dims=128, in_channels=3, in_dim=351232, is_pretrain=False, log_every=10, loss_classes_weight=5, loss_severity_weight=5, max_epoch=200, num_blocks=2, num_classes=5, num_severity=4, out_channels=64, shortcut=False, start_epoch=0, stride=1, weight_decay=0.0)
+Detection(
+  (classify): Classification(
+    (block0): LargeBackBone(
+      (backbone): BackBone(
+        (conv1): Conv2d(3, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+        (bottlenecks): Sequential(
+          (0): BottleNeck(
+            (branch2a): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (branch2b): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (branch2c): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (short): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (act): ReLU()
+          )
+          (1): BottleNeck(
+            (branch2a): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (branch2b): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (branch2c): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (short): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (act): ReLU()
+          )
+        )
+        (conv2): Conv2d(512, 3, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+      (norm): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (pool): AvgPool2d(kernel_size=2, stride=2, padding=0)
+    (block1): BackBone(
+      (conv1): Conv2d(3, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+      (bottlenecks): Sequential(
+        (0): BottleNeck(
+          (branch2a): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (branch2b): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (branch2c): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (short): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (act): ReLU()
+        )
+        (1): BottleNeck(
+          (branch2a): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (branch2b): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (branch2c): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (short): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (act): ReLU()
+        )
+      )
+      (conv2): Conv2d(512, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    )
+    (block2): BackBone(
+      (conv1): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+      (bottlenecks): Sequential(
+        (0): BottleNeck(
+          (branch2a): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (branch2b): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (branch2c): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (short): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (act): ReLU()
+        )
+        (1): BottleNeck(
+          (branch2a): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (branch2b): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (branch2c): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (short): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (act): ReLU()
+        )
+      )
+      (conv2): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    )
+    (block3): BackBone(
+      (conv1): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+      (bottlenecks): Sequential(
+        (0): BottleNeck(
+          (branch2a): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (branch2b): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (branch2c): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (short): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (act): ReLU()
+        )
+        (1): BottleNeck(
+          (branch2a): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (branch2b): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (branch2c): Conv2d(512, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (short): Conv2d(512, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (act): ReLU()
+        )
+      )
+      (conv2): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    )
+    (fpn): PANBlock(
+      (toplayer): ModuleList(
+        (0): ConvBN(
+          (conv): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (act): SiLU()
+        )
+        (1): ConvBN(
+          (conv): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (act): SiLU()
+        )
+        (2): ConvBN(
+          (conv): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (act): SiLU()
+        )
+      )
+      (lateral_convs): ModuleList(
+        (0-2): 3 x ConvBN(
+          (conv): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (act): SiLU()
+        )
+      )
+      (bottom_up_convs): ModuleList(
+        (0-2): 3 x ConvBN(
+          (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+          (bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (act): SiLU()
+        )
+      )
+    )
+    (flatten): Flatten(start_dim=1, end_dim=-1)
+  )
+  (classify_head): Classify_head(
+    (mlp): SimpleMLP(
+      (linear1): Linear(in_features=351232, out_features=128, bias=True)
+      (act): ReLU()
+      (linear2): Linear(in_features=128, out_features=5, bias=True)
+    )
+  )
+  (classify_severity): Classify_severity(
+    (mlp): SimpleOrdinalMLP(
+      (linear1): Linear(in_features=351237, out_features=128, bias=True)
+      (act): ReLU()
+      (linear2): OrdinalRegressionHead(
+        (logits): Linear(in_features=128, out_features=3, bias=False)
+      )
+    )
+  )
+  (criterion): OverallCriterion(
+    (loss): Criterion(
+      (criterion_classes): BCEWithLogitsLoss()
+      (criterion_severity): CrossEntropyLoss()
+    )
+  )
+)
+Epoch [0/200]; Iter [0/9600]; Loss 6.71; LR 1.00e-06; Iter time 0.76; ETA 2:01:29; Mem 2314.20MB
+Epoch [0/200]; Iter [10/9600]; Loss 5.79; LR 1.00e-06; Iter time 0.04; ETA 0:06:44; Mem 2942.42MB
+Epoch [0/200]; Iter [20/9600]; Loss 4.86; LR 1.00e-06; Iter time 0.04; ETA 0:06:40; Mem 2942.42MB
+Epoch [0/200]; Iter [30/9600]; Loss 5.02; LR 1.00e-06; Iter time 0.04; ETA 0:06:40; Mem 2942.42MB
+Epoch [0/200]; Iter [40/9600]; Loss 4.83; LR 1.00e-06; Iter time 0.04; ETA 0:06:37; Mem 2942.42MB
+Epoch [1/200]; Iter [50/9600]; Loss 4.76; LR 1.00e-06; Iter time 0.06; ETA 0:09:26; Mem 2943.16MB
+Epoch [1/200]; Iter [60/9600]; Loss 4.70; LR 1.00e-06; Iter time 0.04; ETA 0:06:28; Mem 2943.16MB
+Epoch [1/200]; Iter [70/9600]; Loss 4.73; LR 1.00e-06; Iter time 0.04; ETA 0:06:31; Mem 2943.16MB
+Epoch [1/200]; Iter [80/9600]; Loss 4.42; LR 1.00e-06; Iter time 0.04; ETA 0:06:28; Mem 2943.16MB
+Epoch [1/200]; Iter [90/9600]; Loss 4.76; LR 1.00e-06; Iter time 0.04; ETA 0:06:27; Mem 2943.16MB
+Epoch [2/200]; Iter [100/9600]; Loss 4.61; LR 1.00e-06; Iter time 0.04; ETA 0:06:44; Mem 2943.16MB
+Epoch [2/200]; Iter [110/9600]; Loss 4.83; LR 1.00e-06; Iter time 0.04; ETA 0:07:01; Mem 2943.16MB
+Epoch [2/200]; Iter [120/9600]; Loss 4.65; LR 1.00e-06; Iter time 0.04; ETA 0:06:36; Mem 2943.16MB
+Epoch [2/200]; Iter [130/9600]; Loss 4.36; LR 1.00e-06; Iter time 0.04; ETA 0:06:28; Mem 2943.16MB
+Epoch [2/200]; Iter [140/9600]; Loss 4.27; LR 1.00e-06; Iter time 0.04; ETA 0:06:31; Mem 2943.16MB
+Epoch [3/200]; Iter [150/9600]; Loss 4.58; LR 1.00e-06; Iter time 0.04; ETA 0:06:30; Mem 2943.16MB
+Epoch [3/200]; Iter [160/9600]; Loss 4.68; LR 1.00e-06; Iter time 0.04; ETA 0:06:35; Mem 2943.16MB
+Epoch [3/200]; Iter [170/9600]; Loss 4.19; LR 1.00e-06; Iter time 0.04; ETA 0:06:41; Mem 2943.16MB
+Epoch [3/200]; Iter [180/9600]; Loss 4.36; LR 1.00e-06; Iter time 0.04; ETA 0:06:33; Mem 2943.16MB
+Epoch [3/200]; Iter [190/9600]; Loss 4.38; LR 1.00e-06; Iter time 0.04; ETA 0:06:35; Mem 2943.16MB
+Epoch [4/200]; Iter [200/9600]; Loss 4.63; LR 1.00e-06; Iter time 0.04; ETA 0:06:28; Mem 2943.16MB
+Epoch [4/200]; Iter [210/9600]; Loss 4.45; LR 1.00e-06; Iter time 0.04; ETA 0:06:39; Mem 2943.16MB
+Epoch [4/200]; Iter [220/9600]; Loss 4.12; LR 1.00e-06; Iter time 0.04; ETA 0:06:30; Mem 2943.16MB
+Epoch [4/200]; Iter [230/9600]; Loss 4.13; LR 1.00e-06; Iter time 0.04; ETA 0:06:30; Mem 2943.16MB
+Epoch [5/200]; Iter [240/9600]; Loss 4.29; LR 1.00e-06; Iter time 0.04; ETA 0:06:31; Mem 2943.16MB
+Epoch [5/200]; Iter [250/9600]; Loss 4.22; LR 1.00e-06; Iter time 0.04; ETA 0:06:30; Mem 2943.16MB
+Epoch [5/200]; Iter [260/9600]; Loss 4.32; LR 1.00e-06; Iter time 0.04; ETA 0:06:34; Mem 2943.16MB
+Epoch [5/200]; Iter [270/9600]; Loss 4.15; LR 1.00e-06; Iter time 0.04; ETA 0:06:37; Mem 2943.16MB
+Epoch [5/200]; Iter [280/9600]; Loss 4.22; LR 1.00e-06; Iter time 0.04; ETA 0:06:37; Mem 2943.16MB
+Epoch [6/200]; Iter [290/9600]; Loss 4.12; LR 1.00e-06; Iter time 0.04; ETA 0:06:26; Mem 2943.16MB
+Evaluate [6/200]; Batch [0/48]; Iter time 0.04; Mem 2943.16MB
+Evaluate [6/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [6/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [6/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [6/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [6/200]
+多标签分类正确率（每个标签）: 81.10%
+严重性分类准确率: 44.50%
+========================================
+Epoch [6/200] saved current best val checkpoint at checkpoint_best.pth; classification_accuracy 0.8109947643979057; severity_accuracy 0.44502617801047123 
+Epoch [6/200]; Iter [300/9600]; Loss 4.02; LR 1.00e-06; Iter time 0.04; ETA 0:06:37; Mem 2943.16MB
+Epoch [6/200]; Iter [310/9600]; Loss 4.16; LR 1.00e-06; Iter time 0.04; ETA 0:06:33; Mem 2943.16MB
+Epoch [6/200]; Iter [320/9600]; Loss 4.37; LR 1.00e-06; Iter time 0.04; ETA 0:06:35; Mem 2943.16MB
+Epoch [6/200]; Iter [330/9600]; Loss 4.14; LR 1.00e-06; Iter time 0.04; ETA 0:06:42; Mem 2943.16MB
+Epoch [7/200]; Iter [340/9600]; Loss 4.11; LR 1.00e-06; Iter time 0.04; ETA 0:06:37; Mem 2943.16MB
+Epoch [7/200]; Iter [350/9600]; Loss 4.11; LR 1.00e-06; Iter time 0.04; ETA 0:06:53; Mem 2943.16MB
+Epoch [7/200]; Iter [360/9600]; Loss 3.93; LR 1.00e-06; Iter time 0.04; ETA 0:06:37; Mem 2943.16MB
+Epoch [7/200]; Iter [370/9600]; Loss 3.91; LR 1.00e-06; Iter time 0.04; ETA 0:06:40; Mem 2943.16MB
+Epoch [7/200]; Iter [380/9600]; Loss 4.44; LR 1.00e-06; Iter time 0.05; ETA 0:06:56; Mem 2943.16MB
+Epoch [8/200]; Iter [390/9600]; Loss 4.20; LR 1.00e-06; Iter time 0.04; ETA 0:06:38; Mem 2943.16MB
+Epoch [8/200]; Iter [400/9600]; Loss 3.84; LR 1.00e-06; Iter time 0.04; ETA 0:06:50; Mem 2943.16MB
+Epoch [8/200]; Iter [410/9600]; Loss 4.34; LR 1.00e-06; Iter time 0.04; ETA 0:06:53; Mem 2943.16MB
+Epoch [8/200]; Iter [420/9600]; Loss 4.26; LR 1.00e-06; Iter time 0.04; ETA 0:06:36; Mem 2943.16MB
+Epoch [8/200]; Iter [430/9600]; Loss 4.14; LR 1.00e-06; Iter time 0.04; ETA 0:06:26; Mem 2943.16MB
+Epoch [9/200]; Iter [440/9600]; Loss 4.04; LR 1.00e-06; Iter time 0.05; ETA 0:07:10; Mem 2943.16MB
+Epoch [9/200]; Iter [450/9600]; Loss 4.14; LR 1.00e-06; Iter time 0.05; ETA 0:06:57; Mem 2943.16MB
+Epoch [9/200]; Iter [460/9600]; Loss 4.12; LR 1.00e-06; Iter time 0.04; ETA 0:06:40; Mem 2943.16MB
+Epoch [9/200]; Iter [470/9600]; Loss 3.90; LR 1.00e-06; Iter time 0.05; ETA 0:06:51; Mem 2943.16MB
+Epoch [10/200]; Iter [480/9600]; Loss 3.87; LR 1.00e-06; Iter time 0.04; ETA 0:06:32; Mem 2943.16MB
+Epoch [10/200]; Iter [490/9600]; Loss 3.78; LR 1.00e-06; Iter time 0.05; ETA 0:06:50; Mem 2943.16MB
+Epoch [10/200]; Iter [500/9600]; Loss 4.31; LR 1.00e-06; Iter time 0.05; ETA 0:07:16; Mem 2943.16MB
+Epoch [10/200]; Iter [510/9600]; Loss 4.23; LR 1.00e-06; Iter time 0.05; ETA 0:06:52; Mem 2943.16MB
+Epoch [10/200]; Iter [520/9600]; Loss 3.94; LR 1.00e-06; Iter time 0.05; ETA 0:06:51; Mem 2943.16MB
+Epoch [11/200]; Iter [530/9600]; Loss 3.81; LR 1.00e-06; Iter time 0.04; ETA 0:06:31; Mem 2943.16MB
+Epoch [11/200]; Iter [540/9600]; Loss 3.81; LR 1.00e-06; Iter time 0.04; ETA 0:06:42; Mem 2943.16MB
+Epoch [11/200]; Iter [550/9600]; Loss 4.01; LR 1.00e-06; Iter time 0.04; ETA 0:06:14; Mem 2943.16MB
+Epoch [11/200]; Iter [560/9600]; Loss 4.25; LR 1.00e-06; Iter time 0.04; ETA 0:06:24; Mem 2943.16MB
+Epoch [11/200]; Iter [570/9600]; Loss 3.92; LR 1.00e-06; Iter time 0.04; ETA 0:06:24; Mem 2943.16MB
+Epoch [12/200]; Iter [580/9600]; Loss 3.90; LR 1.00e-06; Iter time 0.04; ETA 0:06:12; Mem 2943.16MB
+Epoch [12/200]; Iter [590/9600]; Loss 3.95; LR 1.00e-06; Iter time 0.04; ETA 0:06:16; Mem 2943.16MB
+Evaluate [12/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [12/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [12/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [12/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [12/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [12/200]
+多标签分类正确率（每个标签）: 82.57%
+严重性分类准确率: 46.60%
+========================================
+Epoch [12/200] saved current best val checkpoint at checkpoint_best.pth; classification_accuracy 0.8256544502617801; severity_accuracy 0.46596858638743455 
+Epoch [12/200]; Iter [600/9600]; Loss 4.10; LR 1.00e-06; Iter time 0.04; ETA 0:06:12; Mem 2943.16MB
+Epoch [12/200]; Iter [610/9600]; Loss 3.82; LR 1.00e-06; Iter time 0.04; ETA 0:06:23; Mem 2943.16MB
+Epoch [12/200]; Iter [620/9600]; Loss 3.74; LR 1.00e-06; Iter time 0.04; ETA 0:06:25; Mem 2943.16MB
+Epoch [13/200]; Iter [630/9600]; Loss 4.29; LR 1.00e-06; Iter time 0.04; ETA 0:06:06; Mem 2943.16MB
+Epoch [13/200]; Iter [640/9600]; Loss 3.89; LR 1.00e-06; Iter time 0.04; ETA 0:06:21; Mem 2943.16MB
+Epoch [13/200]; Iter [650/9600]; Loss 4.02; LR 1.00e-06; Iter time 0.04; ETA 0:06:18; Mem 2943.16MB
+Epoch [13/200]; Iter [660/9600]; Loss 3.87; LR 1.00e-06; Iter time 0.04; ETA 0:06:18; Mem 2943.16MB
+Epoch [13/200]; Iter [670/9600]; Loss 3.88; LR 1.00e-06; Iter time 0.04; ETA 0:06:17; Mem 2943.16MB
+Epoch [14/200]; Iter [680/9600]; Loss 3.98; LR 1.00e-06; Iter time 0.04; ETA 0:06:10; Mem 2943.16MB
+Epoch [14/200]; Iter [690/9600]; Loss 3.97; LR 1.00e-06; Iter time 0.04; ETA 0:06:19; Mem 2943.16MB
+Epoch [14/200]; Iter [700/9600]; Loss 4.09; LR 1.00e-06; Iter time 0.04; ETA 0:06:22; Mem 2943.16MB
+Epoch [14/200]; Iter [710/9600]; Loss 3.61; LR 1.00e-06; Iter time 0.04; ETA 0:06:16; Mem 2943.16MB
+Epoch [15/200]; Iter [720/9600]; Loss 4.05; LR 1.00e-06; Iter time 0.04; ETA 0:06:01; Mem 2943.16MB
+Epoch [15/200]; Iter [730/9600]; Loss 3.98; LR 1.00e-06; Iter time 0.04; ETA 0:06:15; Mem 2943.16MB
+Epoch [15/200]; Iter [740/9600]; Loss 3.83; LR 1.00e-06; Iter time 0.04; ETA 0:06:07; Mem 2943.16MB
+Epoch [15/200]; Iter [750/9600]; Loss 3.60; LR 1.00e-06; Iter time 0.04; ETA 0:06:08; Mem 2943.16MB
+Epoch [15/200]; Iter [760/9600]; Loss 4.05; LR 1.00e-06; Iter time 0.04; ETA 0:06:15; Mem 2943.16MB
+Epoch [16/200]; Iter [770/9600]; Loss 4.35; LR 1.00e-06; Iter time 0.04; ETA 0:06:02; Mem 2943.16MB
+Epoch [16/200]; Iter [780/9600]; Loss 3.72; LR 1.00e-06; Iter time 0.04; ETA 0:06:15; Mem 2943.16MB
+Epoch [16/200]; Iter [790/9600]; Loss 3.82; LR 1.00e-06; Iter time 0.04; ETA 0:06:12; Mem 2943.16MB
+Epoch [16/200]; Iter [800/9600]; Loss 4.19; LR 1.00e-06; Iter time 0.04; ETA 0:06:10; Mem 2943.16MB
+Epoch [16/200]; Iter [810/9600]; Loss 4.03; LR 1.00e-06; Iter time 0.04; ETA 0:06:16; Mem 2943.16MB
+Epoch [17/200]; Iter [820/9600]; Loss 3.88; LR 1.00e-06; Iter time 0.04; ETA 0:06:19; Mem 2943.16MB
+Epoch [17/200]; Iter [830/9600]; Loss 3.85; LR 1.00e-06; Iter time 0.04; ETA 0:06:12; Mem 2943.16MB
+Epoch [17/200]; Iter [840/9600]; Loss 4.03; LR 1.00e-06; Iter time 0.04; ETA 0:06:18; Mem 2943.16MB
+Epoch [17/200]; Iter [850/9600]; Loss 3.69; LR 1.00e-06; Iter time 0.04; ETA 0:06:07; Mem 2943.16MB
+Epoch [17/200]; Iter [860/9600]; Loss 3.92; LR 1.00e-06; Iter time 0.04; ETA 0:06:09; Mem 2943.16MB
+Epoch [18/200]; Iter [870/9600]; Loss 3.71; LR 1.00e-06; Iter time 0.04; ETA 0:06:06; Mem 2943.16MB
+Epoch [18/200]; Iter [880/9600]; Loss 3.78; LR 1.00e-06; Iter time 0.04; ETA 0:06:13; Mem 2943.16MB
+Epoch [18/200]; Iter [890/9600]; Loss 3.93; LR 1.00e-06; Iter time 0.04; ETA 0:06:05; Mem 2943.16MB
+Evaluate [18/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [18/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [18/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [18/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [18/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [18/200]
+多标签分类正确率（每个标签）: 82.25%
+严重性分类准确率: 51.83%
+========================================
+Epoch [18/200] saved current best val checkpoint at checkpoint_best.pth; classification_accuracy 0.8225130890052356; severity_accuracy 0.518324607329843 
+Epoch [18/200]; Iter [900/9600]; Loss 3.85; LR 1.00e-06; Iter time 0.04; ETA 0:06:02; Mem 2943.16MB
+Epoch [18/200]; Iter [910/9600]; Loss 3.99; LR 1.00e-06; Iter time 0.04; ETA 0:06:09; Mem 2943.16MB
+Epoch [19/200]; Iter [920/9600]; Loss 3.71; LR 1.00e-06; Iter time 0.04; ETA 0:05:57; Mem 2943.16MB
+Epoch [19/200]; Iter [930/9600]; Loss 3.89; LR 1.00e-06; Iter time 0.04; ETA 0:05:56; Mem 2943.16MB
+Epoch [19/200]; Iter [940/9600]; Loss 3.99; LR 1.00e-06; Iter time 0.04; ETA 0:06:00; Mem 2943.16MB
+Epoch [19/200]; Iter [950/9600]; Loss 3.79; LR 1.00e-06; Iter time 0.04; ETA 0:05:55; Mem 2943.16MB
+Epoch [20/200]; Iter [960/9600]; Loss 4.03; LR 1.00e-06; Iter time 0.04; ETA 0:05:50; Mem 2943.16MB
+Epoch [20/200]; Iter [970/9600]; Loss 4.21; LR 1.00e-06; Iter time 0.04; ETA 0:06:01; Mem 2943.16MB
+Epoch [20/200]; Iter [980/9600]; Loss 3.79; LR 1.00e-06; Iter time 0.04; ETA 0:05:53; Mem 2943.16MB
+Epoch [20/200]; Iter [990/9600]; Loss 3.70; LR 1.00e-06; Iter time 0.04; ETA 0:05:55; Mem 2943.16MB
+Epoch [20/200]; Iter [1000/9600]; Loss 3.68; LR 1.00e-06; Iter time 0.04; ETA 0:05:57; Mem 2943.16MB
+Epoch [21/200]; Iter [1010/9600]; Loss 4.10; LR 1.00e-06; Iter time 0.04; ETA 0:05:51; Mem 2943.16MB
+Epoch [21/200]; Iter [1020/9600]; Loss 3.88; LR 1.00e-06; Iter time 0.04; ETA 0:05:59; Mem 2943.16MB
+Epoch [21/200]; Iter [1030/9600]; Loss 3.87; LR 1.00e-06; Iter time 0.04; ETA 0:05:59; Mem 2943.16MB
+Epoch [21/200]; Iter [1040/9600]; Loss 4.08; LR 1.00e-06; Iter time 0.04; ETA 0:06:00; Mem 2943.16MB
+Epoch [21/200]; Iter [1050/9600]; Loss 3.71; LR 1.00e-06; Iter time 0.04; ETA 0:05:58; Mem 2943.16MB
+Epoch [22/200]; Iter [1060/9600]; Loss 3.84; LR 1.00e-06; Iter time 0.04; ETA 0:05:56; Mem 2943.16MB
+Epoch [22/200]; Iter [1070/9600]; Loss 3.90; LR 1.00e-06; Iter time 0.04; ETA 0:05:53; Mem 2943.16MB
+Epoch [22/200]; Iter [1080/9600]; Loss 3.79; LR 1.00e-06; Iter time 0.04; ETA 0:05:57; Mem 2943.16MB
+Epoch [22/200]; Iter [1090/9600]; Loss 3.56; LR 1.00e-06; Iter time 0.04; ETA 0:06:00; Mem 2943.16MB
+Epoch [22/200]; Iter [1100/9600]; Loss 3.60; LR 1.00e-06; Iter time 0.04; ETA 0:05:55; Mem 2943.16MB
+Epoch [23/200]; Iter [1110/9600]; Loss 3.74; LR 1.00e-06; Iter time 0.04; ETA 0:05:50; Mem 2943.16MB
+Epoch [23/200]; Iter [1120/9600]; Loss 3.81; LR 1.00e-06; Iter time 0.04; ETA 0:05:43; Mem 2943.16MB
+Epoch [23/200]; Iter [1130/9600]; Loss 3.90; LR 1.00e-06; Iter time 0.04; ETA 0:05:46; Mem 2943.16MB
+Epoch [23/200]; Iter [1140/9600]; Loss 3.94; LR 1.00e-06; Iter time 0.04; ETA 0:05:52; Mem 2943.16MB
+Epoch [23/200]; Iter [1150/9600]; Loss 3.44; LR 1.00e-06; Iter time 0.04; ETA 0:05:53; Mem 2943.16MB
+Epoch [24/200]; Iter [1160/9600]; Loss 3.72; LR 1.00e-06; Iter time 0.04; ETA 0:05:48; Mem 2943.16MB
+Epoch [24/200]; Iter [1170/9600]; Loss 3.64; LR 1.00e-06; Iter time 0.04; ETA 0:05:56; Mem 2943.16MB
+Epoch [24/200]; Iter [1180/9600]; Loss 4.02; LR 1.00e-06; Iter time 0.04; ETA 0:05:57; Mem 2943.16MB
+Epoch [24/200]; Iter [1190/9600]; Loss 4.02; LR 1.00e-06; Iter time 0.04; ETA 0:06:06; Mem 2943.16MB
+Evaluate [24/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [24/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [24/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [24/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [24/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [24/200]
+多标签分类正确率（每个标签）: 82.30%
+严重性分类准确率: 51.05%
+========================================
+Epoch [25/200]; Iter [1200/9600]; Loss 3.75; LR 1.00e-06; Iter time 0.04; ETA 0:05:57; Mem 2943.16MB
+Epoch [25/200]; Iter [1210/9600]; Loss 3.88; LR 1.00e-06; Iter time 0.04; ETA 0:05:56; Mem 2943.16MB
+Epoch [25/200]; Iter [1220/9600]; Loss 3.61; LR 1.00e-06; Iter time 0.04; ETA 0:05:50; Mem 2943.16MB
+Epoch [25/200]; Iter [1230/9600]; Loss 3.59; LR 1.00e-06; Iter time 0.04; ETA 0:05:51; Mem 2943.16MB
+Epoch [25/200]; Iter [1240/9600]; Loss 3.71; LR 1.00e-06; Iter time 0.04; ETA 0:05:49; Mem 2943.16MB
+Epoch [26/200]; Iter [1250/9600]; Loss 4.00; LR 1.00e-06; Iter time 0.04; ETA 0:05:51; Mem 2943.16MB
+Epoch [26/200]; Iter [1260/9600]; Loss 3.82; LR 1.00e-06; Iter time 0.04; ETA 0:05:44; Mem 2943.16MB
+Epoch [26/200]; Iter [1270/9600]; Loss 3.60; LR 1.00e-06; Iter time 0.04; ETA 0:05:46; Mem 2943.16MB
+Epoch [26/200]; Iter [1280/9600]; Loss 3.68; LR 1.00e-06; Iter time 0.04; ETA 0:05:46; Mem 2943.16MB
+Epoch [26/200]; Iter [1290/9600]; Loss 3.73; LR 1.00e-06; Iter time 0.04; ETA 0:05:43; Mem 2943.16MB
+Epoch [27/200]; Iter [1300/9600]; Loss 3.93; LR 1.00e-06; Iter time 0.04; ETA 0:05:40; Mem 2943.16MB
+Epoch [27/200]; Iter [1310/9600]; Loss 3.84; LR 1.00e-06; Iter time 0.04; ETA 0:05:44; Mem 2943.16MB
+Epoch [27/200]; Iter [1320/9600]; Loss 3.81; LR 1.00e-06; Iter time 0.04; ETA 0:05:49; Mem 2943.16MB
+Epoch [27/200]; Iter [1330/9600]; Loss 3.39; LR 1.00e-06; Iter time 0.04; ETA 0:05:46; Mem 2943.16MB
+Epoch [27/200]; Iter [1340/9600]; Loss 3.90; LR 1.00e-06; Iter time 0.04; ETA 0:05:51; Mem 2943.16MB
+Epoch [28/200]; Iter [1350/9600]; Loss 3.50; LR 1.00e-06; Iter time 0.04; ETA 0:05:47; Mem 2943.16MB
+Epoch [28/200]; Iter [1360/9600]; Loss 3.88; LR 1.00e-06; Iter time 0.04; ETA 0:05:46; Mem 2943.16MB
+Epoch [28/200]; Iter [1370/9600]; Loss 3.81; LR 1.00e-06; Iter time 0.04; ETA 0:05:43; Mem 2943.16MB
+Epoch [28/200]; Iter [1380/9600]; Loss 4.03; LR 1.00e-06; Iter time 0.04; ETA 0:05:49; Mem 2943.16MB
+Epoch [28/200]; Iter [1390/9600]; Loss 3.65; LR 1.00e-06; Iter time 0.04; ETA 0:05:52; Mem 2943.16MB
+Epoch [29/200]; Iter [1400/9600]; Loss 3.58; LR 1.00e-06; Iter time 0.04; ETA 0:05:57; Mem 2943.16MB
+Epoch [29/200]; Iter [1410/9600]; Loss 3.71; LR 1.00e-06; Iter time 0.04; ETA 0:05:49; Mem 2943.16MB
+Epoch [29/200]; Iter [1420/9600]; Loss 3.66; LR 1.00e-06; Iter time 0.04; ETA 0:05:46; Mem 2943.16MB
+Epoch [29/200]; Iter [1430/9600]; Loss 4.07; LR 1.00e-06; Iter time 0.04; ETA 0:05:49; Mem 2943.16MB
+Epoch [30/200]; Iter [1440/9600]; Loss 3.72; LR 1.00e-06; Iter time 0.04; ETA 0:05:35; Mem 2943.16MB
+Epoch [30/200]; Iter [1450/9600]; Loss 3.65; LR 1.00e-06; Iter time 0.04; ETA 0:05:52; Mem 2943.16MB
+Epoch [30/200]; Iter [1460/9600]; Loss 3.78; LR 1.00e-06; Iter time 0.04; ETA 0:05:53; Mem 2943.16MB
+Epoch [30/200]; Iter [1470/9600]; Loss 3.80; LR 1.00e-06; Iter time 0.04; ETA 0:05:40; Mem 2943.16MB
+Epoch [30/200]; Iter [1480/9600]; Loss 3.63; LR 1.00e-06; Iter time 0.04; ETA 0:05:37; Mem 2943.16MB
+Epoch [31/200]; Iter [1490/9600]; Loss 3.64; LR 1.00e-06; Iter time 0.04; ETA 0:05:39; Mem 2943.16MB
+Evaluate [31/200]; Batch [0/48]; Iter time 0.03; Mem 2943.16MB
+Evaluate [31/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [31/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [31/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [31/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [31/200]
+多标签分类正确率（每个标签）: 83.09%
+严重性分类准确率: 53.66%
+========================================
+Epoch [31/200] saved current best val checkpoint at checkpoint_best.pth; classification_accuracy 0.830890052356021; severity_accuracy 0.5366492146596858 
+Epoch [31/200]; Iter [1500/9600]; Loss 3.24; LR 1.00e-06; Iter time 0.04; ETA 0:05:40; Mem 2943.16MB
+Epoch [31/200]; Iter [1510/9600]; Loss 3.83; LR 1.00e-06; Iter time 0.04; ETA 0:05:42; Mem 2943.16MB
+Epoch [31/200]; Iter [1520/9600]; Loss 3.98; LR 1.00e-06; Iter time 0.04; ETA 0:05:43; Mem 2943.16MB
+Epoch [31/200]; Iter [1530/9600]; Loss 4.01; LR 1.00e-06; Iter time 0.04; ETA 0:05:40; Mem 2943.16MB
+Epoch [32/200]; Iter [1540/9600]; Loss 3.77; LR 1.00e-06; Iter time 0.04; ETA 0:05:47; Mem 2943.16MB
+Epoch [32/200]; Iter [1550/9600]; Loss 3.23; LR 1.00e-06; Iter time 0.04; ETA 0:05:36; Mem 2943.16MB
+Epoch [32/200]; Iter [1560/9600]; Loss 4.03; LR 1.00e-06; Iter time 0.04; ETA 0:05:40; Mem 2943.16MB
+Epoch [32/200]; Iter [1570/9600]; Loss 3.65; LR 1.00e-06; Iter time 0.04; ETA 0:05:37; Mem 2943.16MB
+Epoch [32/200]; Iter [1580/9600]; Loss 3.59; LR 1.00e-06; Iter time 0.04; ETA 0:05:32; Mem 2943.16MB
+Epoch [33/200]; Iter [1590/9600]; Loss 3.72; LR 1.00e-06; Iter time 0.04; ETA 0:05:28; Mem 2943.16MB
+Epoch [33/200]; Iter [1600/9600]; Loss 3.65; LR 1.00e-06; Iter time 0.04; ETA 0:05:35; Mem 2943.16MB
+Epoch [33/200]; Iter [1610/9600]; Loss 3.69; LR 1.00e-06; Iter time 0.04; ETA 0:05:35; Mem 2943.16MB
+Epoch [33/200]; Iter [1620/9600]; Loss 3.84; LR 1.00e-06; Iter time 0.04; ETA 0:05:34; Mem 2943.16MB
+Epoch [33/200]; Iter [1630/9600]; Loss 3.95; LR 1.00e-06; Iter time 0.04; ETA 0:05:30; Mem 2943.16MB
+Epoch [34/200]; Iter [1640/9600]; Loss 3.84; LR 1.00e-06; Iter time 0.04; ETA 0:05:28; Mem 2943.16MB
+Epoch [34/200]; Iter [1650/9600]; Loss 3.68; LR 1.00e-06; Iter time 0.04; ETA 0:05:30; Mem 2943.16MB
+Epoch [34/200]; Iter [1660/9600]; Loss 3.87; LR 1.00e-06; Iter time 0.04; ETA 0:05:31; Mem 2943.16MB
+Epoch [34/200]; Iter [1670/9600]; Loss 3.83; LR 1.00e-06; Iter time 0.04; ETA 0:05:32; Mem 2943.16MB
+Epoch [35/200]; Iter [1680/9600]; Loss 3.61; LR 1.00e-06; Iter time 0.04; ETA 0:05:23; Mem 2943.16MB
+Epoch [35/200]; Iter [1690/9600]; Loss 3.67; LR 1.00e-06; Iter time 0.04; ETA 0:05:28; Mem 2943.16MB
+Epoch [35/200]; Iter [1700/9600]; Loss 3.73; LR 1.00e-06; Iter time 0.04; ETA 0:05:24; Mem 2943.16MB
+Epoch [35/200]; Iter [1710/9600]; Loss 3.81; LR 1.00e-06; Iter time 0.04; ETA 0:05:26; Mem 2943.16MB
+Epoch [35/200]; Iter [1720/9600]; Loss 3.85; LR 1.00e-06; Iter time 0.04; ETA 0:05:32; Mem 2943.16MB
+Epoch [36/200]; Iter [1730/9600]; Loss 3.70; LR 1.00e-06; Iter time 0.04; ETA 0:05:17; Mem 2943.16MB
+Epoch [36/200]; Iter [1740/9600]; Loss 3.98; LR 1.00e-06; Iter time 0.04; ETA 0:05:34; Mem 2943.16MB
+Epoch [36/200]; Iter [1750/9600]; Loss 3.44; LR 1.00e-06; Iter time 0.04; ETA 0:05:34; Mem 2943.16MB
+Epoch [36/200]; Iter [1760/9600]; Loss 3.68; LR 1.00e-06; Iter time 0.04; ETA 0:05:28; Mem 2943.16MB
+Epoch [36/200]; Iter [1770/9600]; Loss 3.86; LR 1.00e-06; Iter time 0.04; ETA 0:05:34; Mem 2943.16MB
+Epoch [37/200]; Iter [1780/9600]; Loss 3.50; LR 1.00e-06; Iter time 0.04; ETA 0:05:34; Mem 2943.16MB
+Epoch [37/200]; Iter [1790/9600]; Loss 3.71; LR 1.00e-06; Iter time 0.04; ETA 0:05:29; Mem 2943.16MB
+Evaluate [37/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [37/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [37/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [37/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [37/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [37/200]
+多标签分类正确率（每个标签）: 83.98%
+严重性分类准确率: 55.50%
+========================================
+Epoch [37/200] saved current best val checkpoint at checkpoint_best.pth; classification_accuracy 0.8397905759162304; severity_accuracy 0.5549738219895288 
+Epoch [37/200]; Iter [1800/9600]; Loss 3.74; LR 1.00e-06; Iter time 0.04; ETA 0:05:31; Mem 2943.16MB
+Epoch [37/200]; Iter [1810/9600]; Loss 3.55; LR 1.00e-06; Iter time 0.04; ETA 0:05:35; Mem 2943.16MB
+Epoch [37/200]; Iter [1820/9600]; Loss 3.67; LR 1.00e-06; Iter time 0.04; ETA 0:05:23; Mem 2943.16MB
+Epoch [38/200]; Iter [1830/9600]; Loss 3.34; LR 1.00e-06; Iter time 0.04; ETA 0:05:17; Mem 2943.16MB
+Epoch [38/200]; Iter [1840/9600]; Loss 3.64; LR 1.00e-06; Iter time 0.04; ETA 0:05:18; Mem 2943.16MB
+Epoch [38/200]; Iter [1850/9600]; Loss 3.84; LR 1.00e-06; Iter time 0.04; ETA 0:05:15; Mem 2943.16MB
+Epoch [38/200]; Iter [1860/9600]; Loss 3.59; LR 1.00e-06; Iter time 0.04; ETA 0:05:14; Mem 2943.16MB
+Epoch [38/200]; Iter [1870/9600]; Loss 3.59; LR 1.00e-06; Iter time 0.04; ETA 0:05:16; Mem 2943.16MB
+Epoch [39/200]; Iter [1880/9600]; Loss 3.61; LR 1.00e-06; Iter time 0.04; ETA 0:05:15; Mem 2943.16MB
+Epoch [39/200]; Iter [1890/9600]; Loss 3.39; LR 1.00e-06; Iter time 0.04; ETA 0:05:18; Mem 2943.16MB
+Epoch [39/200]; Iter [1900/9600]; Loss 3.54; LR 1.00e-06; Iter time 0.04; ETA 0:05:26; Mem 2943.16MB
+Epoch [39/200]; Iter [1910/9600]; Loss 3.34; LR 1.00e-06; Iter time 0.04; ETA 0:05:33; Mem 2943.16MB
+Epoch [40/200]; Iter [1920/9600]; Loss 3.85; LR 1.00e-06; Iter time 0.04; ETA 0:05:24; Mem 2943.16MB
+Epoch [40/200]; Iter [1930/9600]; Loss 3.96; LR 1.00e-06; Iter time 0.04; ETA 0:05:23; Mem 2943.16MB
+Epoch [40/200]; Iter [1940/9600]; Loss 3.77; LR 1.00e-06; Iter time 0.04; ETA 0:05:19; Mem 2943.16MB
+Epoch [40/200]; Iter [1950/9600]; Loss 3.64; LR 1.00e-06; Iter time 0.04; ETA 0:05:18; Mem 2943.16MB
+Epoch [40/200]; Iter [1960/9600]; Loss 3.76; LR 1.00e-06; Iter time 0.04; ETA 0:05:22; Mem 2943.16MB
+Epoch [41/200]; Iter [1970/9600]; Loss 3.38; LR 1.00e-06; Iter time 0.04; ETA 0:05:18; Mem 2943.16MB
+Epoch [41/200]; Iter [1980/9600]; Loss 3.84; LR 1.00e-06; Iter time 0.04; ETA 0:05:13; Mem 2943.16MB
+Epoch [41/200]; Iter [1990/9600]; Loss 3.45; LR 1.00e-06; Iter time 0.04; ETA 0:05:16; Mem 2943.16MB
+Epoch [41/200]; Iter [2000/9600]; Loss 3.65; LR 1.00e-06; Iter time 0.04; ETA 0:05:18; Mem 2943.16MB
+Epoch [41/200]; Iter [2010/9600]; Loss 3.70; LR 1.00e-06; Iter time 0.04; ETA 0:05:14; Mem 2943.16MB
+Epoch [42/200]; Iter [2020/9600]; Loss 3.70; LR 1.00e-06; Iter time 0.04; ETA 0:05:13; Mem 2943.16MB
+Epoch [42/200]; Iter [2030/9600]; Loss 3.32; LR 1.00e-06; Iter time 0.04; ETA 0:05:14; Mem 2943.16MB
+Epoch [42/200]; Iter [2040/9600]; Loss 3.39; LR 1.00e-06; Iter time 0.04; ETA 0:05:21; Mem 2943.16MB
+Epoch [42/200]; Iter [2050/9600]; Loss 3.52; LR 1.00e-06; Iter time 0.04; ETA 0:05:29; Mem 2943.16MB
+Epoch [42/200]; Iter [2060/9600]; Loss 4.14; LR 1.00e-06; Iter time 0.04; ETA 0:05:20; Mem 2943.16MB
+Epoch [43/200]; Iter [2070/9600]; Loss 3.66; LR 1.00e-06; Iter time 0.04; ETA 0:05:15; Mem 2943.16MB
+Epoch [43/200]; Iter [2080/9600]; Loss 3.39; LR 1.00e-06; Iter time 0.04; ETA 0:05:27; Mem 2943.16MB
+Epoch [43/200]; Iter [2090/9600]; Loss 3.66; LR 1.00e-06; Iter time 0.04; ETA 0:05:20; Mem 2943.16MB
+Evaluate [43/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [43/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [43/200]; Batch [20/48]; Iter time 0.03; Mem 2943.16MB
+Evaluate [43/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [43/200]; Batch [40/48]; Iter time 0.03; Mem 2943.16MB
+========================================
+Evaluate Epoch [43/200]
+多标签分类正确率（每个标签）: 83.30%
+严重性分类准确率: 58.64%
+========================================
+Epoch [43/200] saved current best val checkpoint at checkpoint_best.pth; classification_accuracy 0.8329842931937173; severity_accuracy 0.5863874345549738 
+Epoch [43/200]; Iter [2100/9600]; Loss 3.48; LR 1.00e-06; Iter time 0.04; ETA 0:05:20; Mem 2943.16MB
+Epoch [43/200]; Iter [2110/9600]; Loss 4.11; LR 1.00e-06; Iter time 0.04; ETA 0:05:17; Mem 2943.16MB
+Epoch [44/200]; Iter [2120/9600]; Loss 3.58; LR 1.00e-06; Iter time 0.04; ETA 0:05:16; Mem 2943.16MB
+Epoch [44/200]; Iter [2130/9600]; Loss 3.79; LR 1.00e-06; Iter time 0.04; ETA 0:05:18; Mem 2943.16MB
+Epoch [44/200]; Iter [2140/9600]; Loss 3.57; LR 1.00e-06; Iter time 0.04; ETA 0:05:18; Mem 2943.16MB
+Epoch [44/200]; Iter [2150/9600]; Loss 3.60; LR 1.00e-06; Iter time 0.04; ETA 0:05:10; Mem 2943.16MB
+Epoch [45/200]; Iter [2160/9600]; Loss 3.44; LR 1.00e-06; Iter time 0.04; ETA 0:05:13; Mem 2943.16MB
+Epoch [45/200]; Iter [2170/9600]; Loss 3.62; LR 1.00e-06; Iter time 0.04; ETA 0:05:16; Mem 2943.16MB
+Epoch [45/200]; Iter [2180/9600]; Loss 3.74; LR 1.00e-06; Iter time 0.04; ETA 0:05:09; Mem 2943.16MB
+Epoch [45/200]; Iter [2190/9600]; Loss 3.35; LR 1.00e-06; Iter time 0.04; ETA 0:05:05; Mem 2943.16MB
+Epoch [45/200]; Iter [2200/9600]; Loss 3.78; LR 1.00e-06; Iter time 0.04; ETA 0:05:02; Mem 2943.16MB
+Epoch [46/200]; Iter [2210/9600]; Loss 3.93; LR 1.00e-06; Iter time 0.04; ETA 0:05:07; Mem 2943.16MB
+Epoch [46/200]; Iter [2220/9600]; Loss 3.30; LR 1.00e-06; Iter time 0.04; ETA 0:05:13; Mem 2943.16MB
+Epoch [46/200]; Iter [2230/9600]; Loss 3.34; LR 1.00e-06; Iter time 0.04; ETA 0:05:05; Mem 2943.16MB
+Epoch [46/200]; Iter [2240/9600]; Loss 3.83; LR 1.00e-06; Iter time 0.04; ETA 0:05:05; Mem 2943.16MB
+Epoch [46/200]; Iter [2250/9600]; Loss 3.54; LR 1.00e-06; Iter time 0.04; ETA 0:05:05; Mem 2943.16MB
+Epoch [47/200]; Iter [2260/9600]; Loss 3.46; LR 1.00e-06; Iter time 0.04; ETA 0:05:09; Mem 2943.16MB
+Epoch [47/200]; Iter [2270/9600]; Loss 3.87; LR 1.00e-06; Iter time 0.04; ETA 0:05:00; Mem 2943.16MB
+Epoch [47/200]; Iter [2280/9600]; Loss 3.19; LR 1.00e-06; Iter time 0.04; ETA 0:05:00; Mem 2943.16MB
+Epoch [47/200]; Iter [2290/9600]; Loss 3.72; LR 1.00e-06; Iter time 0.04; ETA 0:05:00; Mem 2943.16MB
+Epoch [47/200]; Iter [2300/9600]; Loss 3.47; LR 1.00e-06; Iter time 0.04; ETA 0:04:58; Mem 2943.16MB
+Epoch [48/200]; Iter [2310/9600]; Loss 3.79; LR 1.00e-06; Iter time 0.04; ETA 0:05:01; Mem 2943.16MB
+Epoch [48/200]; Iter [2320/9600]; Loss 3.46; LR 1.00e-06; Iter time 0.04; ETA 0:05:00; Mem 2943.16MB
+Epoch [48/200]; Iter [2330/9600]; Loss 3.69; LR 1.00e-06; Iter time 0.04; ETA 0:05:01; Mem 2943.16MB
+Epoch [48/200]; Iter [2340/9600]; Loss 3.44; LR 1.00e-06; Iter time 0.04; ETA 0:04:58; Mem 2943.16MB
+Epoch [48/200]; Iter [2350/9600]; Loss 3.51; LR 1.00e-06; Iter time 0.04; ETA 0:04:58; Mem 2943.16MB
+Epoch [49/200]; Iter [2360/9600]; Loss 3.40; LR 1.00e-06; Iter time 0.04; ETA 0:04:59; Mem 2943.16MB
+Epoch [49/200]; Iter [2370/9600]; Loss 3.88; LR 1.00e-06; Iter time 0.04; ETA 0:05:01; Mem 2943.16MB
+Epoch [49/200]; Iter [2380/9600]; Loss 3.44; LR 1.00e-06; Iter time 0.04; ETA 0:05:06; Mem 2943.16MB
+Epoch [49/200]; Iter [2390/9600]; Loss 3.41; LR 1.00e-06; Iter time 0.04; ETA 0:05:04; Mem 2943.16MB
+Evaluate [49/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [49/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [49/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [49/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [49/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [49/200]
+多标签分类正确率（每个标签）: 84.92%
+严重性分类准确率: 58.64%
+========================================
+Epoch [49/200] saved current best val checkpoint at checkpoint_best.pth; classification_accuracy 0.8492146596858638; severity_accuracy 0.5863874345549738 
+Epoch [50/200]; Iter [2400/9600]; Loss 3.68; LR 1.00e-06; Iter time 0.04; ETA 0:04:52; Mem 2943.16MB
+Epoch [50/200]; Iter [2410/9600]; Loss 3.40; LR 1.00e-06; Iter time 0.04; ETA 0:04:59; Mem 2943.16MB
+Epoch [50/200]; Iter [2420/9600]; Loss 3.48; LR 1.00e-06; Iter time 0.04; ETA 0:04:58; Mem 2943.16MB
+Epoch [50/200]; Iter [2430/9600]; Loss 3.51; LR 1.00e-06; Iter time 0.04; ETA 0:04:59; Mem 2943.16MB
+Epoch [50/200]; Iter [2440/9600]; Loss 4.07; LR 1.00e-06; Iter time 0.04; ETA 0:04:55; Mem 2943.16MB
+Epoch [51/200]; Iter [2450/9600]; Loss 3.85; LR 1.00e-06; Iter time 0.04; ETA 0:04:51; Mem 2943.16MB
+Epoch [51/200]; Iter [2460/9600]; Loss 3.48; LR 1.00e-06; Iter time 0.04; ETA 0:05:03; Mem 2943.16MB
+Epoch [51/200]; Iter [2470/9600]; Loss 3.72; LR 1.00e-06; Iter time 0.04; ETA 0:05:04; Mem 2943.16MB
+Epoch [51/200]; Iter [2480/9600]; Loss 3.48; LR 1.00e-06; Iter time 0.04; ETA 0:05:06; Mem 2943.16MB
+Epoch [51/200]; Iter [2490/9600]; Loss 3.47; LR 1.00e-06; Iter time 0.04; ETA 0:04:57; Mem 2943.16MB
+Epoch [52/200]; Iter [2500/9600]; Loss 3.51; LR 1.00e-06; Iter time 0.04; ETA 0:05:04; Mem 2943.16MB
+Epoch [52/200]; Iter [2510/9600]; Loss 3.56; LR 1.00e-06; Iter time 0.04; ETA 0:04:56; Mem 2943.16MB
+Epoch [52/200]; Iter [2520/9600]; Loss 3.59; LR 1.00e-06; Iter time 0.04; ETA 0:05:11; Mem 2943.16MB
+Epoch [52/200]; Iter [2530/9600]; Loss 3.74; LR 1.00e-06; Iter time 0.04; ETA 0:05:13; Mem 2943.16MB
+Epoch [52/200]; Iter [2540/9600]; Loss 3.40; LR 1.00e-06; Iter time 0.04; ETA 0:05:03; Mem 2943.16MB
+Epoch [53/200]; Iter [2550/9600]; Loss 3.72; LR 1.00e-06; Iter time 0.04; ETA 0:04:59; Mem 2943.16MB
+Epoch [53/200]; Iter [2560/9600]; Loss 3.83; LR 1.00e-06; Iter time 0.04; ETA 0:05:12; Mem 2943.16MB
+Epoch [53/200]; Iter [2570/9600]; Loss 3.54; LR 1.00e-06; Iter time 0.05; ETA 0:05:45; Mem 2943.16MB
+Epoch [53/200]; Iter [2580/9600]; Loss 3.49; LR 1.00e-06; Iter time 0.05; ETA 0:05:24; Mem 2943.16MB
+Epoch [53/200]; Iter [2590/9600]; Loss 3.37; LR 1.00e-06; Iter time 0.04; ETA 0:05:01; Mem 2943.16MB
+Epoch [54/200]; Iter [2600/9600]; Loss 3.61; LR 1.00e-06; Iter time 0.04; ETA 0:04:59; Mem 2943.16MB
+Epoch [54/200]; Iter [2610/9600]; Loss 3.50; LR 1.00e-06; Iter time 0.04; ETA 0:04:53; Mem 2943.16MB
+Epoch [54/200]; Iter [2620/9600]; Loss 3.49; LR 1.00e-06; Iter time 0.04; ETA 0:04:59; Mem 2943.16MB
+Epoch [54/200]; Iter [2630/9600]; Loss 3.68; LR 1.00e-06; Iter time 0.04; ETA 0:05:00; Mem 2943.16MB
+Epoch [55/200]; Iter [2640/9600]; Loss 3.58; LR 1.00e-06; Iter time 0.04; ETA 0:04:56; Mem 2943.16MB
+Epoch [55/200]; Iter [2650/9600]; Loss 3.79; LR 1.00e-06; Iter time 0.04; ETA 0:05:04; Mem 2943.16MB
+Epoch [55/200]; Iter [2660/9600]; Loss 3.55; LR 1.00e-06; Iter time 0.04; ETA 0:05:02; Mem 2943.16MB
+Epoch [55/200]; Iter [2670/9600]; Loss 3.32; LR 1.00e-06; Iter time 0.04; ETA 0:05:00; Mem 2943.16MB
+Epoch [55/200]; Iter [2680/9600]; Loss 3.64; LR 1.00e-06; Iter time 0.04; ETA 0:05:02; Mem 2943.16MB
+Epoch [56/200]; Iter [2690/9600]; Loss 3.13; LR 1.00e-06; Iter time 0.04; ETA 0:05:00; Mem 2943.16MB
+Evaluate [56/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [56/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [56/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [56/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [56/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [56/200]
+多标签分类正确率（每个标签）: 85.18%
+严重性分类准确率: 58.12%
+========================================
+Epoch [56/200]; Iter [2700/9600]; Loss 3.51; LR 1.00e-06; Iter time 0.04; ETA 0:05:07; Mem 2943.16MB
+Epoch [56/200]; Iter [2710/9600]; Loss 3.29; LR 1.00e-06; Iter time 0.04; ETA 0:05:04; Mem 2943.16MB
+Epoch [56/200]; Iter [2720/9600]; Loss 3.52; LR 1.00e-06; Iter time 0.04; ETA 0:04:57; Mem 2943.16MB
+Epoch [56/200]; Iter [2730/9600]; Loss 3.62; LR 1.00e-06; Iter time 0.04; ETA 0:04:50; Mem 2943.16MB
+Epoch [57/200]; Iter [2740/9600]; Loss 4.01; LR 1.00e-06; Iter time 0.04; ETA 0:04:49; Mem 2943.16MB
+Epoch [57/200]; Iter [2750/9600]; Loss 3.66; LR 1.00e-06; Iter time 0.04; ETA 0:04:50; Mem 2943.16MB
+Epoch [57/200]; Iter [2760/9600]; Loss 3.40; LR 1.00e-06; Iter time 0.04; ETA 0:04:53; Mem 2943.16MB
+Epoch [57/200]; Iter [2770/9600]; Loss 3.30; LR 1.00e-06; Iter time 0.04; ETA 0:04:47; Mem 2943.16MB
+Epoch [57/200]; Iter [2780/9600]; Loss 3.85; LR 1.00e-06; Iter time 0.04; ETA 0:04:47; Mem 2943.16MB
+Epoch [58/200]; Iter [2790/9600]; Loss 3.39; LR 1.00e-06; Iter time 0.04; ETA 0:04:43; Mem 2943.16MB
+Epoch [58/200]; Iter [2800/9600]; Loss 3.30; LR 1.00e-06; Iter time 0.04; ETA 0:04:44; Mem 2943.16MB
+Epoch [58/200]; Iter [2810/9600]; Loss 4.05; LR 1.00e-06; Iter time 0.04; ETA 0:04:44; Mem 2943.16MB
+Epoch [58/200]; Iter [2820/9600]; Loss 3.34; LR 1.00e-06; Iter time 0.04; ETA 0:04:47; Mem 2943.16MB
+Epoch [58/200]; Iter [2830/9600]; Loss 3.70; LR 1.00e-06; Iter time 0.04; ETA 0:04:41; Mem 2943.16MB
+Epoch [59/200]; Iter [2840/9600]; Loss 4.09; LR 1.00e-06; Iter time 0.04; ETA 0:04:37; Mem 2943.16MB
+Epoch [59/200]; Iter [2850/9600]; Loss 3.41; LR 1.00e-06; Iter time 0.04; ETA 0:04:41; Mem 2943.16MB
+Epoch [59/200]; Iter [2860/9600]; Loss 3.19; LR 1.00e-06; Iter time 0.04; ETA 0:04:44; Mem 2943.16MB
+Epoch [59/200]; Iter [2870/9600]; Loss 3.36; LR 1.00e-06; Iter time 0.04; ETA 0:04:40; Mem 2943.16MB
+Epoch [60/200]; Iter [2880/9600]; Loss 3.41; LR 1.00e-06; Iter time 0.04; ETA 0:04:42; Mem 2943.16MB
+Epoch [60/200]; Iter [2890/9600]; Loss 3.35; LR 1.00e-06; Iter time 0.04; ETA 0:04:55; Mem 2943.16MB
+Epoch [60/200]; Iter [2900/9600]; Loss 3.67; LR 1.00e-06; Iter time 0.04; ETA 0:04:58; Mem 2943.16MB
+Epoch [60/200]; Iter [2910/9600]; Loss 3.34; LR 1.00e-06; Iter time 0.04; ETA 0:04:51; Mem 2943.16MB
+Epoch [60/200]; Iter [2920/9600]; Loss 3.62; LR 1.00e-06; Iter time 0.04; ETA 0:04:40; Mem 2943.16MB
+Epoch [61/200]; Iter [2930/9600]; Loss 3.49; LR 1.00e-06; Iter time 0.04; ETA 0:04:34; Mem 2943.16MB
+Epoch [61/200]; Iter [2940/9600]; Loss 3.05; LR 1.00e-06; Iter time 0.04; ETA 0:04:40; Mem 2943.16MB
+Epoch [61/200]; Iter [2950/9600]; Loss 3.46; LR 1.00e-06; Iter time 0.04; ETA 0:04:40; Mem 2943.16MB
+Epoch [61/200]; Iter [2960/9600]; Loss 3.57; LR 1.00e-06; Iter time 0.04; ETA 0:04:45; Mem 2943.16MB
+Epoch [61/200]; Iter [2970/9600]; Loss 3.75; LR 1.00e-06; Iter time 0.04; ETA 0:04:49; Mem 2943.16MB
+Epoch [62/200]; Iter [2980/9600]; Loss 3.49; LR 1.00e-06; Iter time 0.04; ETA 0:04:29; Mem 2943.16MB
+Epoch [62/200]; Iter [2990/9600]; Loss 3.31; LR 1.00e-06; Iter time 0.04; ETA 0:04:28; Mem 2943.16MB
+Evaluate [62/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [62/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [62/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [62/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [62/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [62/200]
+多标签分类正确率（每个标签）: 84.87%
+严重性分类准确率: 59.42%
+========================================
+Epoch [62/200] saved current best val checkpoint at checkpoint_best.pth; classification_accuracy 0.8486910994764398; severity_accuracy 0.5942408376963351 
+Epoch [62/200]; Iter [3000/9600]; Loss 3.47; LR 1.00e-06; Iter time 0.04; ETA 0:04:36; Mem 2943.16MB
+Epoch [62/200]; Iter [3010/9600]; Loss 3.72; LR 1.00e-06; Iter time 0.04; ETA 0:04:37; Mem 2943.16MB
+Epoch [62/200]; Iter [3020/9600]; Loss 3.61; LR 1.00e-06; Iter time 0.04; ETA 0:04:31; Mem 2943.16MB
+Epoch [63/200]; Iter [3030/9600]; Loss 3.56; LR 1.00e-06; Iter time 0.04; ETA 0:04:32; Mem 2943.16MB
+Epoch [63/200]; Iter [3040/9600]; Loss 3.46; LR 1.00e-06; Iter time 0.04; ETA 0:04:47; Mem 2943.16MB
+Epoch [63/200]; Iter [3050/9600]; Loss 3.43; LR 1.00e-06; Iter time 0.04; ETA 0:04:41; Mem 2943.16MB
+Epoch [63/200]; Iter [3060/9600]; Loss 3.49; LR 1.00e-06; Iter time 0.04; ETA 0:04:40; Mem 2943.16MB
+Epoch [63/200]; Iter [3070/9600]; Loss 3.48; LR 1.00e-06; Iter time 0.04; ETA 0:04:33; Mem 2943.16MB
+Epoch [64/200]; Iter [3080/9600]; Loss 3.70; LR 1.00e-06; Iter time 0.04; ETA 0:04:29; Mem 2943.16MB
+Epoch [64/200]; Iter [3090/9600]; Loss 3.31; LR 1.00e-06; Iter time 0.04; ETA 0:04:35; Mem 2943.16MB
+Epoch [64/200]; Iter [3100/9600]; Loss 3.27; LR 1.00e-06; Iter time 0.04; ETA 0:04:40; Mem 2943.16MB
+Epoch [64/200]; Iter [3110/9600]; Loss 3.35; LR 1.00e-06; Iter time 0.04; ETA 0:04:37; Mem 2943.16MB
+Epoch [65/200]; Iter [3120/9600]; Loss 3.53; LR 1.00e-06; Iter time 0.04; ETA 0:04:22; Mem 2943.16MB
+Epoch [65/200]; Iter [3130/9600]; Loss 3.69; LR 1.00e-06; Iter time 0.04; ETA 0:04:41; Mem 2943.16MB
+Epoch [65/200]; Iter [3140/9600]; Loss 3.17; LR 1.00e-06; Iter time 0.04; ETA 0:04:36; Mem 2943.16MB
+Epoch [65/200]; Iter [3150/9600]; Loss 3.72; LR 1.00e-06; Iter time 0.04; ETA 0:04:38; Mem 2943.16MB
+Epoch [65/200]; Iter [3160/9600]; Loss 3.31; LR 1.00e-06; Iter time 0.04; ETA 0:04:33; Mem 2943.16MB
+Epoch [66/200]; Iter [3170/9600]; Loss 3.64; LR 1.00e-06; Iter time 0.04; ETA 0:04:30; Mem 2943.16MB
+Epoch [66/200]; Iter [3180/9600]; Loss 3.61; LR 1.00e-06; Iter time 0.04; ETA 0:04:35; Mem 2943.16MB
+Epoch [66/200]; Iter [3190/9600]; Loss 3.19; LR 1.00e-06; Iter time 0.04; ETA 0:04:35; Mem 2943.16MB
+Epoch [66/200]; Iter [3200/9600]; Loss 3.72; LR 1.00e-06; Iter time 0.04; ETA 0:04:39; Mem 2943.16MB
+Epoch [66/200]; Iter [3210/9600]; Loss 3.27; LR 1.00e-06; Iter time 0.04; ETA 0:04:28; Mem 2943.16MB
+Epoch [67/200]; Iter [3220/9600]; Loss 3.02; LR 1.00e-06; Iter time 0.04; ETA 0:04:25; Mem 2943.16MB
+Epoch [67/200]; Iter [3230/9600]; Loss 3.27; LR 1.00e-06; Iter time 0.04; ETA 0:04:34; Mem 2943.16MB
+Epoch [67/200]; Iter [3240/9600]; Loss 3.40; LR 1.00e-06; Iter time 0.04; ETA 0:04:30; Mem 2943.16MB
+Epoch [67/200]; Iter [3250/9600]; Loss 3.51; LR 1.00e-06; Iter time 0.04; ETA 0:04:29; Mem 2943.16MB
+Epoch [67/200]; Iter [3260/9600]; Loss 3.53; LR 1.00e-06; Iter time 0.04; ETA 0:04:27; Mem 2943.16MB
+Epoch [68/200]; Iter [3270/9600]; Loss 3.50; LR 1.00e-06; Iter time 0.04; ETA 0:04:20; Mem 2943.16MB
+Epoch [68/200]; Iter [3280/9600]; Loss 3.53; LR 1.00e-06; Iter time 0.04; ETA 0:04:19; Mem 2943.16MB
+Epoch [68/200]; Iter [3290/9600]; Loss 3.40; LR 1.00e-06; Iter time 0.04; ETA 0:04:25; Mem 2943.16MB
+Evaluate [68/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [68/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [68/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [68/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [68/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [68/200]
+多标签分类正确率（每个标签）: 84.50%
+严重性分类准确率: 60.73%
+========================================
+Epoch [68/200] saved current best val checkpoint at checkpoint_best.pth; classification_accuracy 0.8450261780104712; severity_accuracy 0.6073298429319371 
+Epoch [68/200]; Iter [3300/9600]; Loss 3.61; LR 1.00e-06; Iter time 0.04; ETA 0:04:32; Mem 2943.16MB
+Epoch [68/200]; Iter [3310/9600]; Loss 3.46; LR 1.00e-06; Iter time 0.04; ETA 0:04:21; Mem 2943.16MB
+Epoch [69/200]; Iter [3320/9600]; Loss 2.92; LR 1.00e-06; Iter time 0.04; ETA 0:04:28; Mem 2943.16MB
+Epoch [69/200]; Iter [3330/9600]; Loss 3.91; LR 1.00e-06; Iter time 0.04; ETA 0:04:37; Mem 2943.16MB
+Epoch [69/200]; Iter [3340/9600]; Loss 3.33; LR 1.00e-06; Iter time 0.04; ETA 0:04:27; Mem 2943.16MB
+Epoch [69/200]; Iter [3350/9600]; Loss 3.52; LR 1.00e-06; Iter time 0.04; ETA 0:04:22; Mem 2943.16MB
+Epoch [70/200]; Iter [3360/9600]; Loss 3.12; LR 1.00e-06; Iter time 0.04; ETA 0:04:17; Mem 2943.16MB
+Epoch [70/200]; Iter [3370/9600]; Loss 3.80; LR 1.00e-06; Iter time 0.04; ETA 0:04:27; Mem 2943.16MB
+Epoch [70/200]; Iter [3380/9600]; Loss 3.32; LR 1.00e-06; Iter time 0.04; ETA 0:04:22; Mem 2943.16MB
+Epoch [70/200]; Iter [3390/9600]; Loss 3.40; LR 1.00e-06; Iter time 0.04; ETA 0:04:24; Mem 2943.16MB
+Epoch [70/200]; Iter [3400/9600]; Loss 3.62; LR 1.00e-06; Iter time 0.04; ETA 0:04:34; Mem 2943.16MB
+Epoch [71/200]; Iter [3410/9600]; Loss 3.27; LR 1.00e-06; Iter time 0.04; ETA 0:04:20; Mem 2943.16MB
+Epoch [71/200]; Iter [3420/9600]; Loss 3.32; LR 1.00e-06; Iter time 0.04; ETA 0:04:13; Mem 2943.16MB
+Epoch [71/200]; Iter [3430/9600]; Loss 3.42; LR 1.00e-06; Iter time 0.04; ETA 0:04:19; Mem 2943.16MB
+Epoch [71/200]; Iter [3440/9600]; Loss 3.54; LR 1.00e-06; Iter time 0.04; ETA 0:04:18; Mem 2943.16MB
+Epoch [71/200]; Iter [3450/9600]; Loss 3.36; LR 1.00e-06; Iter time 0.04; ETA 0:04:21; Mem 2943.16MB
+Epoch [72/200]; Iter [3460/9600]; Loss 3.35; LR 1.00e-06; Iter time 0.04; ETA 0:04:13; Mem 2943.16MB
+Epoch [72/200]; Iter [3470/9600]; Loss 3.43; LR 1.00e-06; Iter time 0.04; ETA 0:04:15; Mem 2943.16MB
+Epoch [72/200]; Iter [3480/9600]; Loss 3.70; LR 1.00e-06; Iter time 0.04; ETA 0:04:13; Mem 2943.16MB
+Epoch [72/200]; Iter [3490/9600]; Loss 3.63; LR 1.00e-06; Iter time 0.04; ETA 0:04:15; Mem 2943.16MB
+Epoch [72/200]; Iter [3500/9600]; Loss 3.19; LR 1.00e-06; Iter time 0.04; ETA 0:04:12; Mem 2943.16MB
+Epoch [73/200]; Iter [3510/9600]; Loss 3.49; LR 1.00e-06; Iter time 0.04; ETA 0:04:10; Mem 2943.16MB
+Epoch [73/200]; Iter [3520/9600]; Loss 3.89; LR 1.00e-06; Iter time 0.04; ETA 0:04:12; Mem 2943.16MB
+Epoch [73/200]; Iter [3530/9600]; Loss 3.19; LR 1.00e-06; Iter time 0.04; ETA 0:04:17; Mem 2943.16MB
+Epoch [73/200]; Iter [3540/9600]; Loss 3.40; LR 1.00e-06; Iter time 0.04; ETA 0:04:13; Mem 2943.16MB
+Epoch [73/200]; Iter [3550/9600]; Loss 3.25; LR 1.00e-06; Iter time 0.04; ETA 0:04:11; Mem 2943.16MB
+Epoch [74/200]; Iter [3560/9600]; Loss 3.19; LR 1.00e-06; Iter time 0.04; ETA 0:04:20; Mem 2943.16MB
+Epoch [74/200]; Iter [3570/9600]; Loss 3.45; LR 1.00e-06; Iter time 0.04; ETA 0:04:16; Mem 2943.16MB
+Epoch [74/200]; Iter [3580/9600]; Loss 3.50; LR 1.00e-06; Iter time 0.04; ETA 0:04:19; Mem 2943.16MB
+Epoch [74/200]; Iter [3590/9600]; Loss 3.15; LR 1.00e-06; Iter time 0.04; ETA 0:04:18; Mem 2943.16MB
+Evaluate [74/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [74/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [74/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [74/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [74/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [74/200]
+多标签分类正确率（每个标签）: 86.23%
+严重性分类准确率: 62.57%
+========================================
+Epoch [74/200] saved current best val checkpoint at checkpoint_best.pth; classification_accuracy 0.8623036649214659; severity_accuracy 0.6256544502617801 
+Epoch [75/200]; Iter [3600/9600]; Loss 3.63; LR 1.00e-06; Iter time 0.04; ETA 0:04:08; Mem 2943.16MB
+Epoch [75/200]; Iter [3610/9600]; Loss 3.42; LR 1.00e-06; Iter time 0.04; ETA 0:04:17; Mem 2943.16MB
+Epoch [75/200]; Iter [3620/9600]; Loss 3.38; LR 1.00e-06; Iter time 0.04; ETA 0:04:15; Mem 2943.16MB
+Epoch [75/200]; Iter [3630/9600]; Loss 3.26; LR 1.00e-06; Iter time 0.04; ETA 0:04:09; Mem 2943.16MB
+Epoch [75/200]; Iter [3640/9600]; Loss 3.27; LR 1.00e-06; Iter time 0.04; ETA 0:04:17; Mem 2943.16MB
+Epoch [76/200]; Iter [3650/9600]; Loss 3.14; LR 1.00e-06; Iter time 0.04; ETA 0:04:15; Mem 2943.16MB
+Epoch [76/200]; Iter [3660/9600]; Loss 3.48; LR 1.00e-06; Iter time 0.04; ETA 0:04:15; Mem 2943.16MB
+Epoch [76/200]; Iter [3670/9600]; Loss 3.65; LR 1.00e-06; Iter time 0.04; ETA 0:04:13; Mem 2943.16MB
+Epoch [76/200]; Iter [3680/9600]; Loss 3.44; LR 1.00e-06; Iter time 0.04; ETA 0:04:14; Mem 2943.16MB
+Epoch [76/200]; Iter [3690/9600]; Loss 3.39; LR 1.00e-06; Iter time 0.04; ETA 0:04:03; Mem 2943.16MB
+Epoch [77/200]; Iter [3700/9600]; Loss 3.28; LR 1.00e-06; Iter time 0.04; ETA 0:04:05; Mem 2943.16MB
+Epoch [77/200]; Iter [3710/9600]; Loss 3.15; LR 1.00e-06; Iter time 0.04; ETA 0:04:10; Mem 2943.16MB
+Epoch [77/200]; Iter [3720/9600]; Loss 3.43; LR 1.00e-06; Iter time 0.04; ETA 0:04:22; Mem 2943.16MB
+Epoch [77/200]; Iter [3730/9600]; Loss 3.41; LR 1.00e-06; Iter time 0.04; ETA 0:04:10; Mem 2943.16MB
+Epoch [77/200]; Iter [3740/9600]; Loss 3.45; LR 1.00e-06; Iter time 0.04; ETA 0:04:06; Mem 2943.16MB
+Epoch [78/200]; Iter [3750/9600]; Loss 3.06; LR 1.00e-06; Iter time 0.04; ETA 0:04:07; Mem 2943.16MB
+Epoch [78/200]; Iter [3760/9600]; Loss 3.30; LR 1.00e-06; Iter time 0.04; ETA 0:04:06; Mem 2943.16MB
+Epoch [78/200]; Iter [3770/9600]; Loss 3.40; LR 1.00e-06; Iter time 0.04; ETA 0:04:02; Mem 2943.16MB
+Epoch [78/200]; Iter [3780/9600]; Loss 3.20; LR 1.00e-06; Iter time 0.04; ETA 0:04:04; Mem 2943.16MB
+Epoch [78/200]; Iter [3790/9600]; Loss 3.26; LR 1.00e-06; Iter time 0.04; ETA 0:04:07; Mem 2943.16MB
+Epoch [79/200]; Iter [3800/9600]; Loss 3.53; LR 1.00e-06; Iter time 0.04; ETA 0:04:06; Mem 2943.16MB
+Epoch [79/200]; Iter [3810/9600]; Loss 3.19; LR 1.00e-06; Iter time 0.04; ETA 0:04:03; Mem 2943.16MB
+Epoch [79/200]; Iter [3820/9600]; Loss 3.42; LR 1.00e-06; Iter time 0.04; ETA 0:04:07; Mem 2943.16MB
+Epoch [79/200]; Iter [3830/9600]; Loss 3.36; LR 1.00e-06; Iter time 0.04; ETA 0:04:06; Mem 2943.16MB
+Epoch [80/200]; Iter [3840/9600]; Loss 3.01; LR 1.00e-06; Iter time 0.04; ETA 0:04:02; Mem 2943.16MB
+Epoch [80/200]; Iter [3850/9600]; Loss 3.08; LR 1.00e-06; Iter time 0.04; ETA 0:04:01; Mem 2943.16MB
+Epoch [80/200]; Iter [3860/9600]; Loss 3.29; LR 1.00e-06; Iter time 0.04; ETA 0:04:03; Mem 2943.16MB
+Epoch [80/200]; Iter [3870/9600]; Loss 3.56; LR 1.00e-06; Iter time 0.04; ETA 0:04:09; Mem 2943.16MB
+Epoch [80/200]; Iter [3880/9600]; Loss 3.23; LR 1.00e-06; Iter time 0.04; ETA 0:04:07; Mem 2943.16MB
+Epoch [81/200]; Iter [3890/9600]; Loss 3.48; LR 1.00e-06; Iter time 0.04; ETA 0:03:53; Mem 2943.16MB
+Evaluate [81/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [81/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [81/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [81/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [81/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [81/200]
+多标签分类正确率（每个标签）: 84.97%
+严重性分类准确率: 60.47%
+========================================
+Epoch [81/200]; Iter [3900/9600]; Loss 3.39; LR 1.00e-06; Iter time 0.04; ETA 0:03:58; Mem 2943.16MB
+Epoch [81/200]; Iter [3910/9600]; Loss 3.06; LR 1.00e-06; Iter time 0.04; ETA 0:04:00; Mem 2943.16MB
+Epoch [81/200]; Iter [3920/9600]; Loss 3.44; LR 1.00e-06; Iter time 0.04; ETA 0:03:58; Mem 2943.16MB
+Epoch [81/200]; Iter [3930/9600]; Loss 3.64; LR 1.00e-06; Iter time 0.04; ETA 0:04:05; Mem 2943.16MB
+Epoch [82/200]; Iter [3940/9600]; Loss 3.78; LR 1.00e-06; Iter time 0.04; ETA 0:03:58; Mem 2943.16MB
+Epoch [82/200]; Iter [3950/9600]; Loss 3.52; LR 1.00e-06; Iter time 0.04; ETA 0:04:10; Mem 2943.16MB
+Epoch [82/200]; Iter [3960/9600]; Loss 3.33; LR 1.00e-06; Iter time 0.04; ETA 0:03:56; Mem 2943.16MB
+Epoch [82/200]; Iter [3970/9600]; Loss 3.16; LR 1.00e-06; Iter time 0.04; ETA 0:03:58; Mem 2943.16MB
+Epoch [82/200]; Iter [3980/9600]; Loss 3.30; LR 1.00e-06; Iter time 0.04; ETA 0:04:02; Mem 2943.16MB
+Epoch [83/200]; Iter [3990/9600]; Loss 3.44; LR 1.00e-06; Iter time 0.04; ETA 0:03:57; Mem 2943.16MB
+Epoch [83/200]; Iter [4000/9600]; Loss 3.26; LR 1.00e-06; Iter time 0.04; ETA 0:03:53; Mem 2943.16MB
+Epoch [83/200]; Iter [4010/9600]; Loss 3.22; LR 1.00e-06; Iter time 0.04; ETA 0:03:56; Mem 2943.16MB
+Epoch [83/200]; Iter [4020/9600]; Loss 3.32; LR 1.00e-06; Iter time 0.04; ETA 0:03:54; Mem 2943.16MB
+Epoch [83/200]; Iter [4030/9600]; Loss 3.73; LR 1.00e-06; Iter time 0.04; ETA 0:03:50; Mem 2943.16MB
+Epoch [84/200]; Iter [4040/9600]; Loss 3.42; LR 1.00e-06; Iter time 0.04; ETA 0:03:49; Mem 2943.16MB
+Epoch [84/200]; Iter [4050/9600]; Loss 2.98; LR 1.00e-06; Iter time 0.04; ETA 0:03:50; Mem 2943.16MB
+Epoch [84/200]; Iter [4060/9600]; Loss 3.35; LR 1.00e-06; Iter time 0.04; ETA 0:03:49; Mem 2943.16MB
+Epoch [84/200]; Iter [4070/9600]; Loss 3.46; LR 1.00e-06; Iter time 0.04; ETA 0:03:50; Mem 2943.16MB
+Epoch [85/200]; Iter [4080/9600]; Loss 3.61; LR 1.00e-06; Iter time 0.04; ETA 0:03:44; Mem 2943.16MB
+Epoch [85/200]; Iter [4090/9600]; Loss 3.31; LR 1.00e-06; Iter time 0.04; ETA 0:03:53; Mem 2943.16MB
+Epoch [85/200]; Iter [4100/9600]; Loss 3.16; LR 1.00e-06; Iter time 0.04; ETA 0:03:51; Mem 2943.16MB
+Epoch [85/200]; Iter [4110/9600]; Loss 3.29; LR 1.00e-06; Iter time 0.04; ETA 0:03:50; Mem 2943.16MB
+Epoch [85/200]; Iter [4120/9600]; Loss 3.26; LR 1.00e-06; Iter time 0.04; ETA 0:03:51; Mem 2943.16MB
+Epoch [86/200]; Iter [4130/9600]; Loss 3.47; LR 1.00e-06; Iter time 0.04; ETA 0:03:56; Mem 2943.16MB
+Epoch [86/200]; Iter [4140/9600]; Loss 3.44; LR 1.00e-06; Iter time 0.04; ETA 0:03:51; Mem 2943.16MB
+Epoch [86/200]; Iter [4150/9600]; Loss 3.09; LR 1.00e-06; Iter time 0.04; ETA 0:03:56; Mem 2943.16MB
+Epoch [86/200]; Iter [4160/9600]; Loss 3.29; LR 1.00e-06; Iter time 0.04; ETA 0:03:51; Mem 2943.16MB
+Epoch [86/200]; Iter [4170/9600]; Loss 3.39; LR 1.00e-06; Iter time 0.04; ETA 0:03:46; Mem 2943.16MB
+Epoch [87/200]; Iter [4180/9600]; Loss 3.20; LR 1.00e-06; Iter time 0.04; ETA 0:03:44; Mem 2943.16MB
+Epoch [87/200]; Iter [4190/9600]; Loss 3.54; LR 1.00e-06; Iter time 0.04; ETA 0:03:45; Mem 2943.16MB
+Evaluate [87/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [87/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [87/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [87/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [87/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [87/200]
+多标签分类正确率（每个标签）: 85.13%
+严重性分类准确率: 63.87%
+========================================
+Epoch [87/200] saved current best val checkpoint at checkpoint_best.pth; classification_accuracy 0.8513089005235602; severity_accuracy 0.6387434554973822 
+Epoch [87/200]; Iter [4200/9600]; Loss 3.10; LR 1.00e-06; Iter time 0.04; ETA 0:03:48; Mem 2943.16MB
+Epoch [87/200]; Iter [4210/9600]; Loss 3.43; LR 1.00e-06; Iter time 0.04; ETA 0:03:42; Mem 2943.16MB
+Epoch [87/200]; Iter [4220/9600]; Loss 3.36; LR 1.00e-06; Iter time 0.04; ETA 0:03:45; Mem 2943.16MB
+Epoch [88/200]; Iter [4230/9600]; Loss 3.21; LR 1.00e-06; Iter time 0.04; ETA 0:03:51; Mem 2943.16MB
+Epoch [88/200]; Iter [4240/9600]; Loss 3.10; LR 1.00e-06; Iter time 0.04; ETA 0:03:43; Mem 2943.16MB
+Epoch [88/200]; Iter [4250/9600]; Loss 3.47; LR 1.00e-06; Iter time 0.04; ETA 0:03:42; Mem 2943.16MB
+Epoch [88/200]; Iter [4260/9600]; Loss 3.34; LR 1.00e-06; Iter time 0.04; ETA 0:03:43; Mem 2943.16MB
+Epoch [88/200]; Iter [4270/9600]; Loss 3.34; LR 1.00e-06; Iter time 0.04; ETA 0:03:41; Mem 2943.16MB
+Epoch [89/200]; Iter [4280/9600]; Loss 3.07; LR 1.00e-06; Iter time 0.04; ETA 0:03:54; Mem 2943.16MB
+Epoch [89/200]; Iter [4290/9600]; Loss 3.07; LR 1.00e-06; Iter time 0.04; ETA 0:03:51; Mem 2943.16MB
+Epoch [89/200]; Iter [4300/9600]; Loss 3.65; LR 1.00e-06; Iter time 0.04; ETA 0:03:39; Mem 2943.16MB
+Epoch [89/200]; Iter [4310/9600]; Loss 3.49; LR 1.00e-06; Iter time 0.04; ETA 0:03:49; Mem 2943.16MB
+Epoch [90/200]; Iter [4320/9600]; Loss 3.54; LR 1.00e-06; Iter time 0.04; ETA 0:03:36; Mem 2943.16MB
+Epoch [90/200]; Iter [4330/9600]; Loss 3.45; LR 1.00e-06; Iter time 0.04; ETA 0:03:43; Mem 2943.16MB
+Epoch [90/200]; Iter [4340/9600]; Loss 3.37; LR 1.00e-06; Iter time 0.04; ETA 0:03:46; Mem 2943.16MB
+Epoch [90/200]; Iter [4350/9600]; Loss 3.21; LR 1.00e-06; Iter time 0.04; ETA 0:03:48; Mem 2943.16MB
+Epoch [90/200]; Iter [4360/9600]; Loss 3.29; LR 1.00e-06; Iter time 0.04; ETA 0:03:42; Mem 2943.16MB
+Epoch [91/200]; Iter [4370/9600]; Loss 3.07; LR 1.00e-06; Iter time 0.04; ETA 0:03:41; Mem 2943.16MB
+Epoch [91/200]; Iter [4380/9600]; Loss 3.01; LR 1.00e-06; Iter time 0.04; ETA 0:03:37; Mem 2943.16MB
+Epoch [91/200]; Iter [4390/9600]; Loss 3.16; LR 1.00e-06; Iter time 0.04; ETA 0:03:41; Mem 2943.16MB
+Epoch [91/200]; Iter [4400/9600]; Loss 3.46; LR 1.00e-06; Iter time 0.04; ETA 0:03:36; Mem 2943.16MB
+Epoch [91/200]; Iter [4410/9600]; Loss 3.25; LR 1.00e-06; Iter time 0.04; ETA 0:03:35; Mem 2943.16MB
+Epoch [92/200]; Iter [4420/9600]; Loss 3.32; LR 1.00e-06; Iter time 0.04; ETA 0:03:32; Mem 2943.16MB
+Epoch [92/200]; Iter [4430/9600]; Loss 3.46; LR 1.00e-06; Iter time 0.04; ETA 0:03:42; Mem 2943.16MB
+Epoch [92/200]; Iter [4440/9600]; Loss 3.36; LR 1.00e-06; Iter time 0.04; ETA 0:03:40; Mem 2943.16MB
+Epoch [92/200]; Iter [4450/9600]; Loss 3.47; LR 1.00e-06; Iter time 0.04; ETA 0:03:37; Mem 2943.16MB
+Epoch [92/200]; Iter [4460/9600]; Loss 3.50; LR 1.00e-06; Iter time 0.04; ETA 0:03:37; Mem 2943.16MB
+Epoch [93/200]; Iter [4470/9600]; Loss 3.13; LR 1.00e-06; Iter time 0.04; ETA 0:03:34; Mem 2943.16MB
+Epoch [93/200]; Iter [4480/9600]; Loss 3.31; LR 1.00e-06; Iter time 0.04; ETA 0:03:44; Mem 2943.16MB
+Epoch [93/200]; Iter [4490/9600]; Loss 3.43; LR 1.00e-06; Iter time 0.04; ETA 0:03:39; Mem 2943.16MB
+Evaluate [93/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [93/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [93/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [93/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [93/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [93/200]
+多标签分类正确率（每个标签）: 85.76%
+严重性分类准确率: 63.61%
+========================================
+Epoch [93/200] saved current best val checkpoint at checkpoint_best.pth; classification_accuracy 0.8575916230366493; severity_accuracy 0.6361256544502618 
+Epoch [93/200]; Iter [4500/9600]; Loss 2.95; LR 1.00e-06; Iter time 0.04; ETA 0:03:34; Mem 2943.16MB
+Epoch [93/200]; Iter [4510/9600]; Loss 3.24; LR 1.00e-06; Iter time 0.04; ETA 0:03:32; Mem 2943.16MB
+Epoch [94/200]; Iter [4520/9600]; Loss 3.04; LR 1.00e-06; Iter time 0.04; ETA 0:03:34; Mem 2943.16MB
+Epoch [94/200]; Iter [4530/9600]; Loss 3.00; LR 1.00e-06; Iter time 0.04; ETA 0:03:32; Mem 2943.16MB
+Epoch [94/200]; Iter [4540/9600]; Loss 3.96; LR 1.00e-06; Iter time 0.04; ETA 0:03:34; Mem 2943.16MB
+Epoch [94/200]; Iter [4550/9600]; Loss 3.42; LR 1.00e-06; Iter time 0.04; ETA 0:03:31; Mem 2943.16MB
+Epoch [95/200]; Iter [4560/9600]; Loss 3.49; LR 1.00e-06; Iter time 0.04; ETA 0:03:29; Mem 2943.16MB
+Epoch [95/200]; Iter [4570/9600]; Loss 3.06; LR 1.00e-06; Iter time 0.04; ETA 0:03:38; Mem 2943.16MB
+Epoch [95/200]; Iter [4580/9600]; Loss 3.35; LR 1.00e-06; Iter time 0.04; ETA 0:03:31; Mem 2943.16MB
+Epoch [95/200]; Iter [4590/9600]; Loss 3.33; LR 1.00e-06; Iter time 0.04; ETA 0:03:30; Mem 2943.16MB
+Epoch [95/200]; Iter [4600/9600]; Loss 3.65; LR 1.00e-06; Iter time 0.04; ETA 0:03:29; Mem 2943.16MB
+Epoch [96/200]; Iter [4610/9600]; Loss 3.64; LR 1.00e-06; Iter time 0.04; ETA 0:03:25; Mem 2943.16MB
+Epoch [96/200]; Iter [4620/9600]; Loss 3.25; LR 1.00e-06; Iter time 0.04; ETA 0:03:29; Mem 2943.16MB
+Epoch [96/200]; Iter [4630/9600]; Loss 3.47; LR 1.00e-06; Iter time 0.04; ETA 0:03:24; Mem 2943.16MB
+Epoch [96/200]; Iter [4640/9600]; Loss 3.22; LR 1.00e-06; Iter time 0.04; ETA 0:03:24; Mem 2943.16MB
+Epoch [96/200]; Iter [4650/9600]; Loss 3.31; LR 1.00e-06; Iter time 0.04; ETA 0:03:30; Mem 2943.16MB
+Epoch [97/200]; Iter [4660/9600]; Loss 3.10; LR 1.00e-06; Iter time 0.04; ETA 0:03:39; Mem 2943.16MB
+Epoch [97/200]; Iter [4670/9600]; Loss 3.56; LR 1.00e-06; Iter time 0.04; ETA 0:03:25; Mem 2943.16MB
+Epoch [97/200]; Iter [4680/9600]; Loss 3.23; LR 1.00e-06; Iter time 0.04; ETA 0:03:22; Mem 2943.16MB
+Epoch [97/200]; Iter [4690/9600]; Loss 3.19; LR 1.00e-06; Iter time 0.04; ETA 0:03:27; Mem 2943.16MB
+Epoch [97/200]; Iter [4700/9600]; Loss 3.29; LR 1.00e-06; Iter time 0.04; ETA 0:03:24; Mem 2943.16MB
+Epoch [98/200]; Iter [4710/9600]; Loss 3.20; LR 1.00e-06; Iter time 0.04; ETA 0:03:21; Mem 2943.16MB
+Epoch [98/200]; Iter [4720/9600]; Loss 3.18; LR 1.00e-06; Iter time 0.04; ETA 0:03:22; Mem 2943.16MB
+Epoch [98/200]; Iter [4730/9600]; Loss 3.03; LR 1.00e-06; Iter time 0.04; ETA 0:03:23; Mem 2943.16MB
+Epoch [98/200]; Iter [4740/9600]; Loss 3.44; LR 1.00e-06; Iter time 0.04; ETA 0:03:23; Mem 2943.16MB
+Epoch [98/200]; Iter [4750/9600]; Loss 3.57; LR 1.00e-06; Iter time 0.04; ETA 0:03:26; Mem 2943.16MB
+Epoch [99/200]; Iter [4760/9600]; Loss 3.24; LR 1.00e-06; Iter time 0.04; ETA 0:03:33; Mem 2943.16MB
+Epoch [99/200]; Iter [4770/9600]; Loss 3.40; LR 1.00e-06; Iter time 0.04; ETA 0:03:29; Mem 2943.16MB
+Epoch [99/200]; Iter [4780/9600]; Loss 2.93; LR 1.00e-06; Iter time 0.04; ETA 0:03:32; Mem 2943.16MB
+Epoch [99/200]; Iter [4790/9600]; Loss 3.22; LR 1.00e-06; Iter time 0.04; ETA 0:03:28; Mem 2943.16MB
+Evaluate [99/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [99/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [99/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [99/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [99/200]; Batch [40/48]; Iter time 0.03; Mem 2943.16MB
+========================================
+Evaluate Epoch [99/200]
+多标签分类正确率（每个标签）: 86.18%
+严重性分类准确率: 60.47%
+========================================
+Epoch [100/200]; Iter [4800/9600]; Loss 3.38; LR 1.00e-06; Iter time 0.04; ETA 0:03:19; Mem 2943.16MB
+Epoch [100/200]; Iter [4810/9600]; Loss 3.21; LR 1.00e-06; Iter time 0.05; ETA 0:03:45; Mem 2943.16MB
+Epoch [100/200]; Iter [4820/9600]; Loss 2.95; LR 1.00e-06; Iter time 0.05; ETA 0:03:38; Mem 2943.16MB
+Epoch [100/200]; Iter [4830/9600]; Loss 3.33; LR 1.00e-06; Iter time 0.05; ETA 0:03:35; Mem 2943.16MB
+Epoch [100/200]; Iter [4840/9600]; Loss 3.09; LR 1.00e-06; Iter time 0.04; ETA 0:03:25; Mem 2943.16MB
+Epoch [101/200]; Iter [4850/9600]; Loss 3.27; LR 1.00e-06; Iter time 0.04; ETA 0:03:23; Mem 2943.16MB
+Epoch [101/200]; Iter [4860/9600]; Loss 3.22; LR 1.00e-06; Iter time 0.04; ETA 0:03:31; Mem 2943.16MB
+Epoch [101/200]; Iter [4870/9600]; Loss 2.92; LR 1.00e-06; Iter time 0.05; ETA 0:03:37; Mem 2943.16MB
+Epoch [101/200]; Iter [4880/9600]; Loss 3.09; LR 1.00e-06; Iter time 0.04; ETA 0:03:25; Mem 2943.16MB
+Epoch [101/200]; Iter [4890/9600]; Loss 3.47; LR 1.00e-06; Iter time 0.05; ETA 0:03:32; Mem 2943.16MB
+Epoch [102/200]; Iter [4900/9600]; Loss 3.30; LR 1.00e-06; Iter time 0.05; ETA 0:03:37; Mem 2943.16MB
+Epoch [102/200]; Iter [4910/9600]; Loss 3.41; LR 1.00e-06; Iter time 0.04; ETA 0:03:30; Mem 2943.16MB
+Epoch [102/200]; Iter [4920/9600]; Loss 3.34; LR 1.00e-06; Iter time 0.05; ETA 0:03:33; Mem 2943.16MB
+Epoch [102/200]; Iter [4930/9600]; Loss 2.89; LR 1.00e-06; Iter time 0.04; ETA 0:03:20; Mem 2943.16MB
+Epoch [102/200]; Iter [4940/9600]; Loss 3.60; LR 1.00e-06; Iter time 0.04; ETA 0:03:22; Mem 2943.16MB
+Epoch [103/200]; Iter [4950/9600]; Loss 3.59; LR 1.00e-06; Iter time 0.04; ETA 0:03:19; Mem 2943.16MB
+Epoch [103/200]; Iter [4960/9600]; Loss 3.34; LR 1.00e-06; Iter time 0.05; ETA 0:03:28; Mem 2943.16MB
+Epoch [103/200]; Iter [4970/9600]; Loss 3.13; LR 1.00e-06; Iter time 0.04; ETA 0:03:22; Mem 2943.16MB
+Epoch [103/200]; Iter [4980/9600]; Loss 3.50; LR 1.00e-06; Iter time 0.04; ETA 0:03:18; Mem 2943.16MB
+Epoch [103/200]; Iter [4990/9600]; Loss 2.88; LR 1.00e-06; Iter time 0.04; ETA 0:03:18; Mem 2943.16MB
+Epoch [104/200]; Iter [5000/9600]; Loss 3.13; LR 1.00e-06; Iter time 0.04; ETA 0:03:13; Mem 2943.16MB
+Epoch [104/200]; Iter [5010/9600]; Loss 3.41; LR 1.00e-06; Iter time 0.04; ETA 0:03:15; Mem 2943.16MB
+Epoch [104/200]; Iter [5020/9600]; Loss 3.38; LR 1.00e-06; Iter time 0.04; ETA 0:03:17; Mem 2943.16MB
+Epoch [104/200]; Iter [5030/9600]; Loss 3.63; LR 1.00e-06; Iter time 0.04; ETA 0:03:15; Mem 2943.16MB
+Epoch [105/200]; Iter [5040/9600]; Loss 2.80; LR 1.00e-06; Iter time 0.04; ETA 0:03:12; Mem 2943.16MB
+Epoch [105/200]; Iter [5050/9600]; Loss 3.09; LR 1.00e-06; Iter time 0.04; ETA 0:03:15; Mem 2943.16MB
+Epoch [105/200]; Iter [5060/9600]; Loss 3.17; LR 1.00e-06; Iter time 0.04; ETA 0:03:11; Mem 2943.16MB
+Epoch [105/200]; Iter [5070/9600]; Loss 3.25; LR 1.00e-06; Iter time 0.04; ETA 0:03:09; Mem 2943.16MB
+Epoch [105/200]; Iter [5080/9600]; Loss 3.41; LR 1.00e-06; Iter time 0.04; ETA 0:03:12; Mem 2943.16MB
+Epoch [106/200]; Iter [5090/9600]; Loss 3.25; LR 1.00e-06; Iter time 0.04; ETA 0:03:12; Mem 2943.16MB
+Evaluate [106/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [106/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [106/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [106/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [106/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [106/200]
+多标签分类正确率（每个标签）: 87.12%
+严重性分类准确率: 58.38%
+========================================
+Epoch [106/200]; Iter [5100/9600]; Loss 3.75; LR 1.00e-06; Iter time 0.04; ETA 0:03:14; Mem 2943.16MB
+Epoch [106/200]; Iter [5110/9600]; Loss 2.97; LR 1.00e-06; Iter time 0.04; ETA 0:03:15; Mem 2943.16MB
+Epoch [106/200]; Iter [5120/9600]; Loss 3.52; LR 1.00e-06; Iter time 0.04; ETA 0:03:13; Mem 2943.16MB
+Epoch [106/200]; Iter [5130/9600]; Loss 3.53; LR 1.00e-06; Iter time 0.04; ETA 0:03:12; Mem 2943.16MB
+Epoch [107/200]; Iter [5140/9600]; Loss 3.16; LR 1.00e-06; Iter time 0.04; ETA 0:03:11; Mem 2943.16MB
+Epoch [107/200]; Iter [5150/9600]; Loss 3.22; LR 1.00e-06; Iter time 0.04; ETA 0:03:10; Mem 2943.16MB
+Epoch [107/200]; Iter [5160/9600]; Loss 3.54; LR 1.00e-06; Iter time 0.04; ETA 0:03:08; Mem 2943.16MB
+Epoch [107/200]; Iter [5170/9600]; Loss 2.92; LR 1.00e-06; Iter time 0.04; ETA 0:03:07; Mem 2943.16MB
+Epoch [107/200]; Iter [5180/9600]; Loss 3.01; LR 1.00e-06; Iter time 0.04; ETA 0:03:06; Mem 2943.16MB
+Epoch [108/200]; Iter [5190/9600]; Loss 3.32; LR 1.00e-06; Iter time 0.04; ETA 0:03:05; Mem 2943.16MB
+Epoch [108/200]; Iter [5200/9600]; Loss 3.30; LR 1.00e-06; Iter time 0.04; ETA 0:03:07; Mem 2943.16MB
+Epoch [108/200]; Iter [5210/9600]; Loss 3.34; LR 1.00e-06; Iter time 0.04; ETA 0:03:08; Mem 2943.16MB
+Epoch [108/200]; Iter [5220/9600]; Loss 3.15; LR 1.00e-06; Iter time 0.04; ETA 0:03:07; Mem 2943.16MB
+Epoch [108/200]; Iter [5230/9600]; Loss 3.20; LR 1.00e-06; Iter time 0.04; ETA 0:03:01; Mem 2943.16MB
+Epoch [109/200]; Iter [5240/9600]; Loss 2.96; LR 1.00e-06; Iter time 0.04; ETA 0:02:57; Mem 2943.16MB
+Epoch [109/200]; Iter [5250/9600]; Loss 3.28; LR 1.00e-06; Iter time 0.04; ETA 0:03:01; Mem 2943.16MB
+Epoch [109/200]; Iter [5260/9600]; Loss 3.37; LR 1.00e-06; Iter time 0.04; ETA 0:03:07; Mem 2943.16MB
+Epoch [109/200]; Iter [5270/9600]; Loss 3.41; LR 1.00e-06; Iter time 0.04; ETA 0:03:01; Mem 2943.16MB
+Epoch [110/200]; Iter [5280/9600]; Loss 2.86; LR 1.00e-06; Iter time 0.04; ETA 0:02:58; Mem 2943.16MB
+Epoch [110/200]; Iter [5290/9600]; Loss 3.10; LR 1.00e-06; Iter time 0.04; ETA 0:03:05; Mem 2943.16MB
+Epoch [110/200]; Iter [5300/9600]; Loss 3.68; LR 1.00e-06; Iter time 0.04; ETA 0:03:01; Mem 2943.16MB
+Epoch [110/200]; Iter [5310/9600]; Loss 3.08; LR 1.00e-06; Iter time 0.04; ETA 0:02:59; Mem 2943.16MB
+Epoch [110/200]; Iter [5320/9600]; Loss 3.28; LR 1.00e-06; Iter time 0.04; ETA 0:02:59; Mem 2943.16MB
+Epoch [111/200]; Iter [5330/9600]; Loss 2.95; LR 1.00e-06; Iter time 0.04; ETA 0:02:59; Mem 2943.16MB
+Epoch [111/200]; Iter [5340/9600]; Loss 3.14; LR 1.00e-06; Iter time 0.04; ETA 0:02:54; Mem 2943.16MB
+Epoch [111/200]; Iter [5350/9600]; Loss 3.23; LR 1.00e-06; Iter time 0.04; ETA 0:02:56; Mem 2943.16MB
+Epoch [111/200]; Iter [5360/9600]; Loss 3.37; LR 1.00e-06; Iter time 0.04; ETA 0:03:00; Mem 2943.16MB
+Epoch [111/200]; Iter [5370/9600]; Loss 3.04; LR 1.00e-06; Iter time 0.04; ETA 0:03:00; Mem 2943.16MB
+Epoch [112/200]; Iter [5380/9600]; Loss 3.55; LR 1.00e-06; Iter time 0.04; ETA 0:02:52; Mem 2943.16MB
+Epoch [112/200]; Iter [5390/9600]; Loss 3.46; LR 1.00e-06; Iter time 0.04; ETA 0:02:52; Mem 2943.16MB
+Evaluate [112/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [112/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [112/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [112/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [112/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [112/200]
+多标签分类正确率（每个标签）: 86.54%
+严重性分类准确率: 62.04%
+========================================
+Epoch [112/200]; Iter [5400/9600]; Loss 3.09; LR 1.00e-06; Iter time 0.04; ETA 0:02:53; Mem 2943.16MB
+Epoch [112/200]; Iter [5410/9600]; Loss 3.18; LR 1.00e-06; Iter time 0.04; ETA 0:02:55; Mem 2943.16MB
+Epoch [112/200]; Iter [5420/9600]; Loss 3.02; LR 1.00e-06; Iter time 0.04; ETA 0:02:53; Mem 2943.16MB
+Epoch [113/200]; Iter [5430/9600]; Loss 2.89; LR 1.00e-06; Iter time 0.04; ETA 0:02:53; Mem 2943.16MB
+Epoch [113/200]; Iter [5440/9600]; Loss 2.84; LR 1.00e-06; Iter time 0.04; ETA 0:02:51; Mem 2943.16MB
+Epoch [113/200]; Iter [5450/9600]; Loss 3.49; LR 1.00e-06; Iter time 0.04; ETA 0:02:52; Mem 2943.16MB
+Epoch [113/200]; Iter [5460/9600]; Loss 3.07; LR 1.00e-06; Iter time 0.04; ETA 0:02:54; Mem 2943.16MB
+Epoch [113/200]; Iter [5470/9600]; Loss 3.38; LR 1.00e-06; Iter time 0.04; ETA 0:02:55; Mem 2943.16MB
+Epoch [114/200]; Iter [5480/9600]; Loss 2.79; LR 1.00e-06; Iter time 0.04; ETA 0:02:49; Mem 2943.16MB
+Epoch [114/200]; Iter [5490/9600]; Loss 3.13; LR 1.00e-06; Iter time 0.04; ETA 0:02:49; Mem 2943.16MB
+Epoch [114/200]; Iter [5500/9600]; Loss 3.38; LR 1.00e-06; Iter time 0.04; ETA 0:02:54; Mem 2943.16MB
+Epoch [114/200]; Iter [5510/9600]; Loss 3.68; LR 1.00e-06; Iter time 0.04; ETA 0:02:52; Mem 2943.16MB
+Epoch [115/200]; Iter [5520/9600]; Loss 2.86; LR 1.00e-06; Iter time 0.04; ETA 0:02:49; Mem 2943.16MB
+Epoch [115/200]; Iter [5530/9600]; Loss 3.27; LR 1.00e-06; Iter time 0.04; ETA 0:02:56; Mem 2943.16MB
+Epoch [115/200]; Iter [5540/9600]; Loss 3.08; LR 1.00e-06; Iter time 0.04; ETA 0:02:53; Mem 2943.16MB
+Epoch [115/200]; Iter [5550/9600]; Loss 3.61; LR 1.00e-06; Iter time 0.04; ETA 0:02:52; Mem 2943.16MB
+Epoch [115/200]; Iter [5560/9600]; Loss 3.32; LR 1.00e-06; Iter time 0.04; ETA 0:02:56; Mem 2943.16MB
+Epoch [116/200]; Iter [5570/9600]; Loss 3.16; LR 1.00e-06; Iter time 0.04; ETA 0:02:46; Mem 2943.16MB
+Epoch [116/200]; Iter [5580/9600]; Loss 3.27; LR 1.00e-06; Iter time 0.04; ETA 0:02:47; Mem 2943.16MB
+Epoch [116/200]; Iter [5590/9600]; Loss 3.07; LR 1.00e-06; Iter time 0.04; ETA 0:02:51; Mem 2943.16MB
+Epoch [116/200]; Iter [5600/9600]; Loss 3.20; LR 1.00e-06; Iter time 0.04; ETA 0:02:49; Mem 2943.16MB
+Epoch [116/200]; Iter [5610/9600]; Loss 3.29; LR 1.00e-06; Iter time 0.04; ETA 0:02:46; Mem 2943.16MB
+Epoch [117/200]; Iter [5620/9600]; Loss 3.06; LR 1.00e-06; Iter time 0.04; ETA 0:02:48; Mem 2943.16MB
+Epoch [117/200]; Iter [5630/9600]; Loss 2.96; LR 1.00e-06; Iter time 0.04; ETA 0:02:46; Mem 2943.16MB
+Epoch [117/200]; Iter [5640/9600]; Loss 3.00; LR 1.00e-06; Iter time 0.04; ETA 0:02:51; Mem 2943.16MB
+Epoch [117/200]; Iter [5650/9600]; Loss 3.39; LR 1.00e-06; Iter time 0.04; ETA 0:02:47; Mem 2943.16MB
+Epoch [117/200]; Iter [5660/9600]; Loss 3.40; LR 1.00e-06; Iter time 0.04; ETA 0:02:46; Mem 2943.16MB
+Epoch [118/200]; Iter [5670/9600]; Loss 3.31; LR 1.00e-06; Iter time 0.04; ETA 0:02:43; Mem 2943.16MB
+Epoch [118/200]; Iter [5680/9600]; Loss 3.13; LR 1.00e-06; Iter time 0.04; ETA 0:02:42; Mem 2943.16MB
+Epoch [118/200]; Iter [5690/9600]; Loss 2.82; LR 1.00e-06; Iter time 0.04; ETA 0:02:43; Mem 2943.16MB
+Evaluate [118/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [118/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [118/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [118/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [118/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [118/200]
+多标签分类正确率（每个标签）: 86.70%
+严重性分类准确率: 58.38%
+========================================
+Epoch [118/200]; Iter [5700/9600]; Loss 3.77; LR 1.00e-06; Iter time 0.04; ETA 0:02:44; Mem 2943.16MB
+Epoch [118/200]; Iter [5710/9600]; Loss 2.84; LR 1.00e-06; Iter time 0.04; ETA 0:02:47; Mem 2943.16MB
+Epoch [119/200]; Iter [5720/9600]; Loss 3.05; LR 1.00e-06; Iter time 0.04; ETA 0:02:42; Mem 2943.16MB
+Epoch [119/200]; Iter [5730/9600]; Loss 3.15; LR 1.00e-06; Iter time 0.04; ETA 0:02:48; Mem 2943.16MB
+Epoch [119/200]; Iter [5740/9600]; Loss 3.42; LR 1.00e-06; Iter time 0.04; ETA 0:02:41; Mem 2943.16MB
+Epoch [119/200]; Iter [5750/9600]; Loss 2.74; LR 1.00e-06; Iter time 0.04; ETA 0:02:45; Mem 2943.16MB
+Epoch [120/200]; Iter [5760/9600]; Loss 3.05; LR 1.00e-06; Iter time 0.04; ETA 0:02:39; Mem 2943.16MB
+Epoch [120/200]; Iter [5770/9600]; Loss 3.27; LR 1.00e-06; Iter time 0.04; ETA 0:02:48; Mem 2943.16MB
+Epoch [120/200]; Iter [5780/9600]; Loss 3.28; LR 1.00e-06; Iter time 0.04; ETA 0:02:40; Mem 2943.16MB
+Epoch [120/200]; Iter [5790/9600]; Loss 2.92; LR 1.00e-06; Iter time 0.04; ETA 0:02:38; Mem 2943.16MB
+Epoch [120/200]; Iter [5800/9600]; Loss 3.10; LR 1.00e-06; Iter time 0.04; ETA 0:02:38; Mem 2943.16MB
+Epoch [121/200]; Iter [5810/9600]; Loss 3.30; LR 1.00e-06; Iter time 0.04; ETA 0:02:44; Mem 2943.16MB
+Epoch [121/200]; Iter [5820/9600]; Loss 2.97; LR 1.00e-06; Iter time 0.04; ETA 0:02:44; Mem 2943.16MB
+Epoch [121/200]; Iter [5830/9600]; Loss 3.07; LR 1.00e-06; Iter time 0.04; ETA 0:02:45; Mem 2943.16MB
+Epoch [121/200]; Iter [5840/9600]; Loss 3.22; LR 1.00e-06; Iter time 0.04; ETA 0:02:40; Mem 2943.16MB
+Epoch [121/200]; Iter [5850/9600]; Loss 3.14; LR 1.00e-06; Iter time 0.04; ETA 0:02:38; Mem 2943.16MB
+Epoch [122/200]; Iter [5860/9600]; Loss 3.22; LR 1.00e-06; Iter time 0.04; ETA 0:02:34; Mem 2943.16MB
+Epoch [122/200]; Iter [5870/9600]; Loss 3.27; LR 1.00e-06; Iter time 0.04; ETA 0:02:36; Mem 2943.16MB
+Epoch [122/200]; Iter [5880/9600]; Loss 2.91; LR 1.00e-06; Iter time 0.04; ETA 0:02:34; Mem 2943.16MB
+Epoch [122/200]; Iter [5890/9600]; Loss 2.98; LR 1.00e-06; Iter time 0.04; ETA 0:02:34; Mem 2943.16MB
+Epoch [122/200]; Iter [5900/9600]; Loss 3.50; LR 1.00e-06; Iter time 0.04; ETA 0:02:34; Mem 2943.16MB
+Epoch [123/200]; Iter [5910/9600]; Loss 2.98; LR 1.00e-06; Iter time 0.04; ETA 0:02:36; Mem 2943.16MB
+Epoch [123/200]; Iter [5920/9600]; Loss 3.26; LR 1.00e-06; Iter time 0.04; ETA 0:02:34; Mem 2943.16MB
+Epoch [123/200]; Iter [5930/9600]; Loss 3.11; LR 1.00e-06; Iter time 0.04; ETA 0:02:34; Mem 2943.16MB
+Epoch [123/200]; Iter [5940/9600]; Loss 2.85; LR 1.00e-06; Iter time 0.04; ETA 0:02:34; Mem 2943.16MB
+Epoch [123/200]; Iter [5950/9600]; Loss 3.48; LR 1.00e-06; Iter time 0.04; ETA 0:02:33; Mem 2943.16MB
+Epoch [124/200]; Iter [5960/9600]; Loss 3.07; LR 1.00e-06; Iter time 0.04; ETA 0:02:30; Mem 2943.16MB
+Epoch [124/200]; Iter [5970/9600]; Loss 3.39; LR 1.00e-06; Iter time 0.04; ETA 0:02:30; Mem 2943.16MB
+Epoch [124/200]; Iter [5980/9600]; Loss 3.29; LR 1.00e-06; Iter time 0.04; ETA 0:02:34; Mem 2943.16MB
+Epoch [124/200]; Iter [5990/9600]; Loss 3.32; LR 1.00e-06; Iter time 0.04; ETA 0:02:30; Mem 2943.16MB
+Evaluate [124/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [124/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [124/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [124/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [124/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [124/200]
+多标签分类正确率（每个标签）: 86.70%
+严重性分类准确率: 62.04%
+========================================
+Epoch [125/200]; Iter [6000/9600]; Loss 3.09; LR 1.00e-06; Iter time 0.04; ETA 0:02:31; Mem 2943.16MB
+Epoch [125/200]; Iter [6010/9600]; Loss 2.69; LR 1.00e-06; Iter time 0.04; ETA 0:02:30; Mem 2943.16MB
+Epoch [125/200]; Iter [6020/9600]; Loss 2.87; LR 1.00e-06; Iter time 0.04; ETA 0:02:27; Mem 2943.16MB
+Epoch [125/200]; Iter [6030/9600]; Loss 3.01; LR 1.00e-06; Iter time 0.04; ETA 0:02:29; Mem 2943.16MB
+Epoch [125/200]; Iter [6040/9600]; Loss 3.17; LR 1.00e-06; Iter time 0.04; ETA 0:02:29; Mem 2943.16MB
+Epoch [126/200]; Iter [6050/9600]; Loss 3.39; LR 1.00e-06; Iter time 0.04; ETA 0:02:24; Mem 2943.16MB
+Epoch [126/200]; Iter [6060/9600]; Loss 3.43; LR 1.00e-06; Iter time 0.04; ETA 0:02:28; Mem 2943.16MB
+Epoch [126/200]; Iter [6070/9600]; Loss 2.88; LR 1.00e-06; Iter time 0.04; ETA 0:02:28; Mem 2943.16MB
+Epoch [126/200]; Iter [6080/9600]; Loss 2.78; LR 1.00e-06; Iter time 0.04; ETA 0:02:28; Mem 2943.16MB
+Epoch [126/200]; Iter [6090/9600]; Loss 3.56; LR 1.00e-06; Iter time 0.04; ETA 0:02:26; Mem 2943.16MB
+Epoch [127/200]; Iter [6100/9600]; Loss 3.37; LR 1.00e-06; Iter time 0.04; ETA 0:02:24; Mem 2943.16MB
+Epoch [127/200]; Iter [6110/9600]; Loss 3.08; LR 1.00e-06; Iter time 0.04; ETA 0:02:22; Mem 2943.16MB
+Epoch [127/200]; Iter [6120/9600]; Loss 3.14; LR 1.00e-06; Iter time 0.04; ETA 0:02:29; Mem 2943.16MB
+Epoch [127/200]; Iter [6130/9600]; Loss 3.25; LR 1.00e-06; Iter time 0.04; ETA 0:02:26; Mem 2943.16MB
+Epoch [127/200]; Iter [6140/9600]; Loss 2.91; LR 1.00e-06; Iter time 0.04; ETA 0:02:28; Mem 2943.16MB
+Epoch [128/200]; Iter [6150/9600]; Loss 3.28; LR 1.00e-06; Iter time 0.04; ETA 0:02:26; Mem 2943.16MB
+Epoch [128/200]; Iter [6160/9600]; Loss 2.66; LR 1.00e-06; Iter time 0.04; ETA 0:02:24; Mem 2943.16MB
+Epoch [128/200]; Iter [6170/9600]; Loss 3.28; LR 1.00e-06; Iter time 0.04; ETA 0:02:21; Mem 2943.16MB
+Epoch [128/200]; Iter [6180/9600]; Loss 3.40; LR 1.00e-06; Iter time 0.04; ETA 0:02:23; Mem 2943.16MB
+Epoch [128/200]; Iter [6190/9600]; Loss 3.01; LR 1.00e-06; Iter time 0.04; ETA 0:02:21; Mem 2943.16MB
+Epoch [129/200]; Iter [6200/9600]; Loss 2.96; LR 1.00e-06; Iter time 0.04; ETA 0:02:19; Mem 2943.16MB
+Epoch [129/200]; Iter [6210/9600]; Loss 3.34; LR 1.00e-06; Iter time 0.04; ETA 0:02:19; Mem 2943.16MB
+Epoch [129/200]; Iter [6220/9600]; Loss 3.11; LR 1.00e-06; Iter time 0.04; ETA 0:02:18; Mem 2943.16MB
+Epoch [129/200]; Iter [6230/9600]; Loss 3.26; LR 1.00e-06; Iter time 0.04; ETA 0:02:18; Mem 2943.16MB
+Epoch [130/200]; Iter [6240/9600]; Loss 3.41; LR 1.00e-06; Iter time 0.04; ETA 0:02:19; Mem 2943.16MB
+Epoch [130/200]; Iter [6250/9600]; Loss 2.93; LR 1.00e-06; Iter time 0.04; ETA 0:02:17; Mem 2943.16MB
+Epoch [130/200]; Iter [6260/9600]; Loss 3.73; LR 1.00e-06; Iter time 0.04; ETA 0:02:17; Mem 2943.16MB
+Epoch [130/200]; Iter [6270/9600]; Loss 3.38; LR 1.00e-06; Iter time 0.04; ETA 0:02:19; Mem 2943.16MB
+Epoch [130/200]; Iter [6280/9600]; Loss 3.26; LR 1.00e-06; Iter time 0.04; ETA 0:02:17; Mem 2943.16MB
+Epoch [131/200]; Iter [6290/9600]; Loss 3.03; LR 1.00e-06; Iter time 0.04; ETA 0:02:17; Mem 2943.16MB
+Evaluate [131/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [131/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [131/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [131/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [131/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [131/200]
+多标签分类正确率（每个标签）: 87.07%
+严重性分类准确率: 63.35%
+========================================
+Epoch [131/200] saved current best val checkpoint at checkpoint_best.pth; classification_accuracy 0.8706806282722513; severity_accuracy 0.6335078534031413 
+Epoch [131/200]; Iter [6300/9600]; Loss 3.05; LR 1.00e-06; Iter time 0.04; ETA 0:02:23; Mem 2943.16MB
+Epoch [131/200]; Iter [6310/9600]; Loss 2.95; LR 1.00e-06; Iter time 0.04; ETA 0:02:18; Mem 2943.16MB
+Epoch [131/200]; Iter [6320/9600]; Loss 2.81; LR 1.00e-06; Iter time 0.04; ETA 0:02:22; Mem 2943.16MB
+Epoch [131/200]; Iter [6330/9600]; Loss 3.37; LR 1.00e-06; Iter time 0.04; ETA 0:02:25; Mem 2943.16MB
+Epoch [132/200]; Iter [6340/9600]; Loss 3.05; LR 1.00e-06; Iter time 0.04; ETA 0:02:19; Mem 2943.16MB
+Epoch [132/200]; Iter [6350/9600]; Loss 3.25; LR 1.00e-06; Iter time 0.04; ETA 0:02:20; Mem 2943.16MB
+Epoch [132/200]; Iter [6360/9600]; Loss 3.12; LR 1.00e-06; Iter time 0.04; ETA 0:02:16; Mem 2943.16MB
+Epoch [132/200]; Iter [6370/9600]; Loss 3.08; LR 1.00e-06; Iter time 0.04; ETA 0:02:16; Mem 2943.16MB
+Epoch [132/200]; Iter [6380/9600]; Loss 2.98; LR 1.00e-06; Iter time 0.04; ETA 0:02:17; Mem 2943.16MB
+Epoch [133/200]; Iter [6390/9600]; Loss 2.88; LR 1.00e-06; Iter time 0.04; ETA 0:02:20; Mem 2943.16MB
+Epoch [133/200]; Iter [6400/9600]; Loss 3.51; LR 1.00e-06; Iter time 0.04; ETA 0:02:15; Mem 2943.16MB
+Epoch [133/200]; Iter [6410/9600]; Loss 3.11; LR 1.00e-06; Iter time 0.04; ETA 0:02:15; Mem 2943.16MB
+Epoch [133/200]; Iter [6420/9600]; Loss 2.86; LR 1.00e-06; Iter time 0.04; ETA 0:02:17; Mem 2943.16MB
+Epoch [133/200]; Iter [6430/9600]; Loss 2.92; LR 1.00e-06; Iter time 0.04; ETA 0:02:15; Mem 2943.16MB
+Epoch [134/200]; Iter [6440/9600]; Loss 2.87; LR 1.00e-06; Iter time 0.04; ETA 0:02:14; Mem 2943.16MB
+Epoch [134/200]; Iter [6450/9600]; Loss 2.90; LR 1.00e-06; Iter time 0.04; ETA 0:02:11; Mem 2943.16MB
+Epoch [134/200]; Iter [6460/9600]; Loss 3.13; LR 1.00e-06; Iter time 0.04; ETA 0:02:08; Mem 2943.16MB
+Epoch [134/200]; Iter [6470/9600]; Loss 3.18; LR 1.00e-06; Iter time 0.04; ETA 0:02:09; Mem 2943.16MB
+Epoch [135/200]; Iter [6480/9600]; Loss 3.02; LR 1.00e-06; Iter time 0.04; ETA 0:02:09; Mem 2943.16MB
+Epoch [135/200]; Iter [6490/9600]; Loss 3.29; LR 1.00e-06; Iter time 0.04; ETA 0:02:10; Mem 2943.16MB
+Epoch [135/200]; Iter [6500/9600]; Loss 2.82; LR 1.00e-06; Iter time 0.04; ETA 0:02:13; Mem 2943.16MB
+Epoch [135/200]; Iter [6510/9600]; Loss 3.05; LR 1.00e-06; Iter time 0.04; ETA 0:02:15; Mem 2943.16MB
+Epoch [135/200]; Iter [6520/9600]; Loss 2.80; LR 1.00e-06; Iter time 0.04; ETA 0:02:11; Mem 2943.16MB
+Epoch [136/200]; Iter [6530/9600]; Loss 3.46; LR 1.00e-06; Iter time 0.04; ETA 0:02:10; Mem 2943.16MB
+Epoch [136/200]; Iter [6540/9600]; Loss 2.67; LR 1.00e-06; Iter time 0.04; ETA 0:02:10; Mem 2943.16MB
+Epoch [136/200]; Iter [6550/9600]; Loss 3.01; LR 1.00e-06; Iter time 0.04; ETA 0:02:08; Mem 2943.16MB
+Epoch [136/200]; Iter [6560/9600]; Loss 3.36; LR 1.00e-06; Iter time 0.04; ETA 0:02:08; Mem 2943.16MB
+Epoch [136/200]; Iter [6570/9600]; Loss 3.04; LR 1.00e-06; Iter time 0.04; ETA 0:02:07; Mem 2943.16MB
+Epoch [137/200]; Iter [6580/9600]; Loss 3.08; LR 1.00e-06; Iter time 0.04; ETA 0:02:07; Mem 2943.16MB
+Epoch [137/200]; Iter [6590/9600]; Loss 2.83; LR 1.00e-06; Iter time 0.04; ETA 0:02:09; Mem 2943.16MB
+Evaluate [137/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [137/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [137/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [137/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [137/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [137/200]
+多标签分类正确率（每个标签）: 88.06%
+严重性分类准确率: 63.09%
+========================================
+Epoch [137/200] saved current best val checkpoint at checkpoint_best.pth; classification_accuracy 0.8806282722513089; severity_accuracy 0.6308900523560209 
+Epoch [137/200]; Iter [6600/9600]; Loss 3.28; LR 1.00e-06; Iter time 0.04; ETA 0:02:07; Mem 2943.16MB
+Epoch [137/200]; Iter [6610/9600]; Loss 3.59; LR 1.00e-06; Iter time 0.04; ETA 0:02:05; Mem 2943.16MB
+Epoch [137/200]; Iter [6620/9600]; Loss 2.42; LR 1.00e-06; Iter time 0.04; ETA 0:02:04; Mem 2943.16MB
+Epoch [138/200]; Iter [6630/9600]; Loss 3.26; LR 1.00e-06; Iter time 0.04; ETA 0:02:06; Mem 2943.16MB
+Epoch [138/200]; Iter [6640/9600]; Loss 3.01; LR 1.00e-06; Iter time 0.04; ETA 0:02:08; Mem 2943.16MB
+Epoch [138/200]; Iter [6650/9600]; Loss 2.83; LR 1.00e-06; Iter time 0.04; ETA 0:02:03; Mem 2943.16MB
+Epoch [138/200]; Iter [6660/9600]; Loss 3.14; LR 1.00e-06; Iter time 0.04; ETA 0:02:03; Mem 2943.16MB
+Epoch [138/200]; Iter [6670/9600]; Loss 3.27; LR 1.00e-06; Iter time 0.04; ETA 0:02:01; Mem 2943.16MB
+Epoch [139/200]; Iter [6680/9600]; Loss 2.63; LR 1.00e-06; Iter time 0.04; ETA 0:02:02; Mem 2943.16MB
+Epoch [139/200]; Iter [6690/9600]; Loss 2.82; LR 1.00e-06; Iter time 0.04; ETA 0:02:07; Mem 2943.16MB
+Epoch [139/200]; Iter [6700/9600]; Loss 3.07; LR 1.00e-06; Iter time 0.04; ETA 0:02:06; Mem 2943.16MB
+Epoch [139/200]; Iter [6710/9600]; Loss 3.15; LR 1.00e-06; Iter time 0.04; ETA 0:02:05; Mem 2943.16MB
+Epoch [140/200]; Iter [6720/9600]; Loss 3.78; LR 1.00e-06; Iter time 0.04; ETA 0:02:06; Mem 2943.16MB
+Epoch [140/200]; Iter [6730/9600]; Loss 3.19; LR 1.00e-06; Iter time 0.05; ETA 0:02:10; Mem 2943.16MB
+Epoch [140/200]; Iter [6740/9600]; Loss 2.76; LR 1.00e-06; Iter time 0.04; ETA 0:02:00; Mem 2943.16MB
+Epoch [140/200]; Iter [6750/9600]; Loss 3.06; LR 1.00e-06; Iter time 0.04; ETA 0:02:01; Mem 2943.16MB
+Epoch [140/200]; Iter [6760/9600]; Loss 3.06; LR 1.00e-06; Iter time 0.04; ETA 0:01:55; Mem 2943.16MB
+Epoch [141/200]; Iter [6770/9600]; Loss 3.14; LR 1.00e-06; Iter time 0.04; ETA 0:01:54; Mem 2943.16MB
+Epoch [141/200]; Iter [6780/9600]; Loss 3.27; LR 1.00e-06; Iter time 0.04; ETA 0:01:57; Mem 2943.16MB
+Epoch [141/200]; Iter [6790/9600]; Loss 2.91; LR 1.00e-06; Iter time 0.04; ETA 0:01:56; Mem 2943.16MB
+Epoch [141/200]; Iter [6800/9600]; Loss 3.40; LR 1.00e-06; Iter time 0.04; ETA 0:02:01; Mem 2943.16MB
+Epoch [141/200]; Iter [6810/9600]; Loss 2.85; LR 1.00e-06; Iter time 0.04; ETA 0:01:55; Mem 2943.16MB
+Epoch [142/200]; Iter [6820/9600]; Loss 2.91; LR 1.00e-06; Iter time 0.04; ETA 0:01:55; Mem 2943.16MB
+Epoch [142/200]; Iter [6830/9600]; Loss 3.04; LR 1.00e-06; Iter time 0.04; ETA 0:01:57; Mem 2943.16MB
+Epoch [142/200]; Iter [6840/9600]; Loss 3.01; LR 1.00e-06; Iter time 0.04; ETA 0:01:53; Mem 2943.16MB
+Epoch [142/200]; Iter [6850/9600]; Loss 3.08; LR 1.00e-06; Iter time 0.04; ETA 0:01:54; Mem 2943.16MB
+Epoch [142/200]; Iter [6860/9600]; Loss 2.93; LR 1.00e-06; Iter time 0.04; ETA 0:01:55; Mem 2943.16MB
+Epoch [143/200]; Iter [6870/9600]; Loss 3.07; LR 1.00e-06; Iter time 0.04; ETA 0:01:53; Mem 2943.16MB
+Epoch [143/200]; Iter [6880/9600]; Loss 3.30; LR 1.00e-06; Iter time 0.04; ETA 0:01:52; Mem 2943.16MB
+Epoch [143/200]; Iter [6890/9600]; Loss 2.84; LR 1.00e-06; Iter time 0.04; ETA 0:01:52; Mem 2943.16MB
+Evaluate [143/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [143/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [143/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [143/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [143/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [143/200]
+多标签分类正确率（每个标签）: 87.70%
+严重性分类准确率: 64.66%
+========================================
+Epoch [143/200] saved current best val checkpoint at checkpoint_best.pth; classification_accuracy 0.8769633507853403; severity_accuracy 0.6465968586387435 
+Epoch [143/200]; Iter [6900/9600]; Loss 3.39; LR 1.00e-06; Iter time 0.04; ETA 0:01:53; Mem 2943.16MB
+Epoch [143/200]; Iter [6910/9600]; Loss 2.65; LR 1.00e-06; Iter time 0.04; ETA 0:01:52; Mem 2943.16MB
+Epoch [144/200]; Iter [6920/9600]; Loss 2.66; LR 1.00e-06; Iter time 0.04; ETA 0:01:51; Mem 2943.16MB
+Epoch [144/200]; Iter [6930/9600]; Loss 2.96; LR 1.00e-06; Iter time 0.04; ETA 0:01:53; Mem 2943.16MB
+Epoch [144/200]; Iter [6940/9600]; Loss 2.93; LR 1.00e-06; Iter time 0.04; ETA 0:01:52; Mem 2943.16MB
+Epoch [144/200]; Iter [6950/9600]; Loss 3.29; LR 1.00e-06; Iter time 0.04; ETA 0:01:50; Mem 2943.16MB
+Epoch [145/200]; Iter [6960/9600]; Loss 3.11; LR 1.00e-06; Iter time 0.04; ETA 0:01:49; Mem 2943.16MB
+Epoch [145/200]; Iter [6970/9600]; Loss 3.17; LR 1.00e-06; Iter time 0.04; ETA 0:01:50; Mem 2943.16MB
+Epoch [145/200]; Iter [6980/9600]; Loss 3.29; LR 1.00e-06; Iter time 0.04; ETA 0:01:52; Mem 2943.16MB
+Epoch [145/200]; Iter [6990/9600]; Loss 3.00; LR 1.00e-06; Iter time 0.04; ETA 0:01:49; Mem 2943.16MB
+Epoch [145/200]; Iter [7000/9600]; Loss 2.94; LR 1.00e-06; Iter time 0.04; ETA 0:01:49; Mem 2943.16MB
+Epoch [146/200]; Iter [7010/9600]; Loss 2.95; LR 1.00e-06; Iter time 0.04; ETA 0:01:51; Mem 2943.16MB
+Epoch [146/200]; Iter [7020/9600]; Loss 2.81; LR 1.00e-06; Iter time 0.04; ETA 0:01:49; Mem 2943.16MB
+Epoch [146/200]; Iter [7030/9600]; Loss 3.09; LR 1.00e-06; Iter time 0.04; ETA 0:01:54; Mem 2943.16MB
+Epoch [146/200]; Iter [7040/9600]; Loss 3.02; LR 1.00e-06; Iter time 0.04; ETA 0:01:54; Mem 2943.16MB
+Epoch [146/200]; Iter [7050/9600]; Loss 3.22; LR 1.00e-06; Iter time 0.04; ETA 0:01:53; Mem 2943.16MB
+Epoch [147/200]; Iter [7060/9600]; Loss 2.92; LR 1.00e-06; Iter time 0.04; ETA 0:01:48; Mem 2943.16MB
+Epoch [147/200]; Iter [7070/9600]; Loss 3.38; LR 1.00e-06; Iter time 0.04; ETA 0:01:47; Mem 2943.16MB
+Epoch [147/200]; Iter [7080/9600]; Loss 3.08; LR 1.00e-06; Iter time 0.04; ETA 0:01:47; Mem 2943.16MB
+Epoch [147/200]; Iter [7090/9600]; Loss 2.73; LR 1.00e-06; Iter time 0.04; ETA 0:01:48; Mem 2943.16MB
+Epoch [147/200]; Iter [7100/9600]; Loss 3.11; LR 1.00e-06; Iter time 0.04; ETA 0:01:46; Mem 2943.16MB
+Epoch [148/200]; Iter [7110/9600]; Loss 3.26; LR 1.00e-06; Iter time 0.05; ETA 0:01:52; Mem 2943.16MB
+Epoch [148/200]; Iter [7120/9600]; Loss 3.17; LR 1.00e-06; Iter time 0.05; ETA 0:01:55; Mem 2943.16MB
+Epoch [148/200]; Iter [7130/9600]; Loss 2.92; LR 1.00e-06; Iter time 0.05; ETA 0:01:54; Mem 2943.16MB
+Epoch [148/200]; Iter [7140/9600]; Loss 3.22; LR 1.00e-06; Iter time 0.04; ETA 0:01:50; Mem 2943.16MB
+Epoch [148/200]; Iter [7150/9600]; Loss 3.28; LR 1.00e-06; Iter time 0.05; ETA 0:01:50; Mem 2943.16MB
+Epoch [149/200]; Iter [7160/9600]; Loss 2.81; LR 1.00e-06; Iter time 0.04; ETA 0:01:46; Mem 2943.16MB
+Epoch [149/200]; Iter [7170/9600]; Loss 3.07; LR 1.00e-06; Iter time 0.05; ETA 0:01:52; Mem 2943.16MB
+Epoch [149/200]; Iter [7180/9600]; Loss 3.36; LR 1.00e-06; Iter time 0.05; ETA 0:01:49; Mem 2943.16MB
+Epoch [149/200]; Iter [7190/9600]; Loss 3.50; LR 1.00e-06; Iter time 0.04; ETA 0:01:47; Mem 2943.16MB
+Evaluate [149/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [149/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [149/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [149/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [149/200]; Batch [40/48]; Iter time 0.03; Mem 2943.16MB
+========================================
+Evaluate Epoch [149/200]
+多标签分类正确率（每个标签）: 87.91%
+严重性分类准确率: 60.73%
+========================================
+Epoch [150/200]; Iter [7200/9600]; Loss 2.73; LR 1.00e-06; Iter time 0.04; ETA 0:01:46; Mem 2943.16MB
+Epoch [150/200]; Iter [7210/9600]; Loss 3.01; LR 1.00e-06; Iter time 0.04; ETA 0:01:46; Mem 2943.16MB
+Epoch [150/200]; Iter [7220/9600]; Loss 3.01; LR 1.00e-06; Iter time 0.04; ETA 0:01:45; Mem 2943.16MB
+Epoch [150/200]; Iter [7230/9600]; Loss 3.40; LR 1.00e-06; Iter time 0.04; ETA 0:01:42; Mem 2943.16MB
+Epoch [150/200]; Iter [7240/9600]; Loss 3.14; LR 1.00e-06; Iter time 0.04; ETA 0:01:45; Mem 2943.16MB
+Epoch [151/200]; Iter [7250/9600]; Loss 2.96; LR 1.00e-06; Iter time 0.04; ETA 0:01:41; Mem 2943.16MB
+Epoch [151/200]; Iter [7260/9600]; Loss 2.82; LR 1.00e-06; Iter time 0.04; ETA 0:01:41; Mem 2943.16MB
+Epoch [151/200]; Iter [7270/9600]; Loss 3.12; LR 1.00e-06; Iter time 0.04; ETA 0:01:39; Mem 2943.16MB
+Epoch [151/200]; Iter [7280/9600]; Loss 3.05; LR 1.00e-06; Iter time 0.04; ETA 0:01:38; Mem 2943.16MB
+Epoch [151/200]; Iter [7290/9600]; Loss 3.16; LR 1.00e-06; Iter time 0.04; ETA 0:01:38; Mem 2943.16MB
+Epoch [152/200]; Iter [7300/9600]; Loss 3.31; LR 1.00e-06; Iter time 0.04; ETA 0:01:36; Mem 2943.16MB
+Epoch [152/200]; Iter [7310/9600]; Loss 3.09; LR 1.00e-06; Iter time 0.04; ETA 0:01:38; Mem 2943.16MB
+Epoch [152/200]; Iter [7320/9600]; Loss 2.90; LR 1.00e-06; Iter time 0.04; ETA 0:01:38; Mem 2943.16MB
+Epoch [152/200]; Iter [7330/9600]; Loss 2.78; LR 1.00e-06; Iter time 0.04; ETA 0:01:34; Mem 2943.16MB
+Epoch [152/200]; Iter [7340/9600]; Loss 2.91; LR 1.00e-06; Iter time 0.04; ETA 0:01:36; Mem 2943.16MB
+Epoch [153/200]; Iter [7350/9600]; Loss 3.26; LR 1.00e-06; Iter time 0.04; ETA 0:01:38; Mem 2943.16MB
+Epoch [153/200]; Iter [7360/9600]; Loss 2.43; LR 1.00e-06; Iter time 0.04; ETA 0:01:32; Mem 2943.16MB
+Epoch [153/200]; Iter [7370/9600]; Loss 3.14; LR 1.00e-06; Iter time 0.04; ETA 0:01:33; Mem 2943.16MB
+Epoch [153/200]; Iter [7380/9600]; Loss 2.90; LR 1.00e-06; Iter time 0.04; ETA 0:01:32; Mem 2943.16MB
+Epoch [153/200]; Iter [7390/9600]; Loss 3.17; LR 1.00e-06; Iter time 0.04; ETA 0:01:33; Mem 2943.16MB
+Epoch [154/200]; Iter [7400/9600]; Loss 3.15; LR 1.00e-06; Iter time 0.04; ETA 0:01:30; Mem 2943.16MB
+Epoch [154/200]; Iter [7410/9600]; Loss 2.69; LR 1.00e-06; Iter time 0.04; ETA 0:01:32; Mem 2943.16MB
+Epoch [154/200]; Iter [7420/9600]; Loss 2.88; LR 1.00e-06; Iter time 0.04; ETA 0:01:30; Mem 2943.16MB
+Epoch [154/200]; Iter [7430/9600]; Loss 3.40; LR 1.00e-06; Iter time 0.04; ETA 0:01:30; Mem 2943.16MB
+Epoch [155/200]; Iter [7440/9600]; Loss 3.00; LR 1.00e-06; Iter time 0.04; ETA 0:01:31; Mem 2943.16MB
+Epoch [155/200]; Iter [7450/9600]; Loss 2.94; LR 1.00e-06; Iter time 0.04; ETA 0:01:29; Mem 2943.16MB
+Epoch [155/200]; Iter [7460/9600]; Loss 2.81; LR 1.00e-06; Iter time 0.04; ETA 0:01:29; Mem 2943.16MB
+Epoch [155/200]; Iter [7470/9600]; Loss 2.84; LR 1.00e-06; Iter time 0.04; ETA 0:01:29; Mem 2943.16MB
+Epoch [155/200]; Iter [7480/9600]; Loss 3.22; LR 1.00e-06; Iter time 0.04; ETA 0:01:29; Mem 2943.16MB
+Epoch [156/200]; Iter [7490/9600]; Loss 2.57; LR 1.00e-06; Iter time 0.04; ETA 0:01:26; Mem 2943.16MB
+Evaluate [156/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [156/200]; Batch [10/48]; Iter time 0.03; Mem 2943.16MB
+Evaluate [156/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [156/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [156/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [156/200]
+多标签分类正确率（每个标签）: 87.85%
+严重性分类准确率: 67.02%
+========================================
+Epoch [156/200] saved current best val checkpoint at checkpoint_best.pth; classification_accuracy 0.8785340314136125; severity_accuracy 0.6701570680628273 
+Epoch [156/200]; Iter [7500/9600]; Loss 2.83; LR 1.00e-06; Iter time 0.04; ETA 0:01:28; Mem 2943.16MB
+Epoch [156/200]; Iter [7510/9600]; Loss 2.97; LR 1.00e-06; Iter time 0.04; ETA 0:01:28; Mem 2943.16MB
+Epoch [156/200]; Iter [7520/9600]; Loss 2.82; LR 1.00e-06; Iter time 0.04; ETA 0:01:26; Mem 2943.16MB
+Epoch [156/200]; Iter [7530/9600]; Loss 3.43; LR 1.00e-06; Iter time 0.04; ETA 0:01:26; Mem 2943.16MB
+Epoch [157/200]; Iter [7540/9600]; Loss 3.05; LR 1.00e-06; Iter time 0.04; ETA 0:01:24; Mem 2943.16MB
+Epoch [157/200]; Iter [7550/9600]; Loss 2.96; LR 1.00e-06; Iter time 0.04; ETA 0:01:26; Mem 2943.16MB
+Epoch [157/200]; Iter [7560/9600]; Loss 3.28; LR 1.00e-06; Iter time 0.04; ETA 0:01:24; Mem 2943.16MB
+Epoch [157/200]; Iter [7570/9600]; Loss 2.62; LR 1.00e-06; Iter time 0.04; ETA 0:01:23; Mem 2943.16MB
+Epoch [157/200]; Iter [7580/9600]; Loss 3.21; LR 1.00e-06; Iter time 0.04; ETA 0:01:22; Mem 2943.16MB
+Epoch [158/200]; Iter [7590/9600]; Loss 2.97; LR 1.00e-06; Iter time 0.04; ETA 0:01:22; Mem 2943.16MB
+Epoch [158/200]; Iter [7600/9600]; Loss 3.38; LR 1.00e-06; Iter time 0.04; ETA 0:01:22; Mem 2943.16MB
+Epoch [158/200]; Iter [7610/9600]; Loss 2.79; LR 1.00e-06; Iter time 0.04; ETA 0:01:23; Mem 2943.16MB
+Epoch [158/200]; Iter [7620/9600]; Loss 3.05; LR 1.00e-06; Iter time 0.04; ETA 0:01:22; Mem 2943.16MB
+Epoch [158/200]; Iter [7630/9600]; Loss 2.89; LR 1.00e-06; Iter time 0.04; ETA 0:01:23; Mem 2943.16MB
+Epoch [159/200]; Iter [7640/9600]; Loss 2.88; LR 1.00e-06; Iter time 0.04; ETA 0:01:22; Mem 2943.16MB
+Epoch [159/200]; Iter [7650/9600]; Loss 3.26; LR 1.00e-06; Iter time 0.04; ETA 0:01:21; Mem 2943.16MB
+Epoch [159/200]; Iter [7660/9600]; Loss 3.01; LR 1.00e-06; Iter time 0.04; ETA 0:01:21; Mem 2943.16MB
+Epoch [159/200]; Iter [7670/9600]; Loss 3.15; LR 1.00e-06; Iter time 0.04; ETA 0:01:20; Mem 2943.16MB
+Epoch [160/200]; Iter [7680/9600]; Loss 3.17; LR 1.00e-06; Iter time 0.04; ETA 0:01:18; Mem 2943.16MB
+Epoch [160/200]; Iter [7690/9600]; Loss 3.16; LR 1.00e-06; Iter time 0.04; ETA 0:01:19; Mem 2943.16MB
+Epoch [160/200]; Iter [7700/9600]; Loss 3.18; LR 1.00e-06; Iter time 0.04; ETA 0:01:19; Mem 2943.16MB
+Epoch [160/200]; Iter [7710/9600]; Loss 2.95; LR 1.00e-06; Iter time 0.04; ETA 0:01:19; Mem 2943.16MB
+Epoch [160/200]; Iter [7720/9600]; Loss 2.56; LR 1.00e-06; Iter time 0.04; ETA 0:01:19; Mem 2943.16MB
+Epoch [161/200]; Iter [7730/9600]; Loss 2.96; LR 1.00e-06; Iter time 0.04; ETA 0:01:18; Mem 2943.16MB
+Epoch [161/200]; Iter [7740/9600]; Loss 2.91; LR 1.00e-06; Iter time 0.04; ETA 0:01:16; Mem 2943.16MB
+Epoch [161/200]; Iter [7750/9600]; Loss 2.68; LR 1.00e-06; Iter time 0.04; ETA 0:01:17; Mem 2943.16MB
+Epoch [161/200]; Iter [7760/9600]; Loss 3.06; LR 1.00e-06; Iter time 0.04; ETA 0:01:17; Mem 2943.16MB
+Epoch [161/200]; Iter [7770/9600]; Loss 3.30; LR 1.00e-06; Iter time 0.04; ETA 0:01:16; Mem 2943.16MB
+Epoch [162/200]; Iter [7780/9600]; Loss 2.91; LR 1.00e-06; Iter time 0.04; ETA 0:01:16; Mem 2943.16MB
+Epoch [162/200]; Iter [7790/9600]; Loss 3.26; LR 1.00e-06; Iter time 0.04; ETA 0:01:18; Mem 2943.16MB
+Evaluate [162/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [162/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [162/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [162/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [162/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [162/200]
+多标签分类正确率（每个标签）: 88.43%
+严重性分类准确率: 68.59%
+========================================
+Epoch [162/200] saved current best val checkpoint at checkpoint_best.pth; classification_accuracy 0.8842931937172774; severity_accuracy 0.6858638743455497 
+Epoch [162/200]; Iter [7800/9600]; Loss 2.84; LR 1.00e-06; Iter time 0.04; ETA 0:01:18; Mem 2943.16MB
+Epoch [162/200]; Iter [7810/9600]; Loss 2.91; LR 1.00e-06; Iter time 0.04; ETA 0:01:15; Mem 2943.16MB
+Epoch [162/200]; Iter [7820/9600]; Loss 3.12; LR 1.00e-06; Iter time 0.04; ETA 0:01:12; Mem 2943.16MB
+Epoch [163/200]; Iter [7830/9600]; Loss 3.34; LR 1.00e-06; Iter time 0.04; ETA 0:01:14; Mem 2943.16MB
+Epoch [163/200]; Iter [7840/9600]; Loss 3.12; LR 1.00e-06; Iter time 0.04; ETA 0:01:13; Mem 2943.16MB
+Epoch [163/200]; Iter [7850/9600]; Loss 2.93; LR 1.00e-06; Iter time 0.04; ETA 0:01:15; Mem 2943.16MB
+Epoch [163/200]; Iter [7860/9600]; Loss 2.71; LR 1.00e-06; Iter time 0.04; ETA 0:01:15; Mem 2943.16MB
+Epoch [163/200]; Iter [7870/9600]; Loss 3.57; LR 1.00e-06; Iter time 0.04; ETA 0:01:13; Mem 2943.16MB
+Epoch [164/200]; Iter [7880/9600]; Loss 3.06; LR 1.00e-06; Iter time 0.04; ETA 0:01:11; Mem 2943.16MB
+Epoch [164/200]; Iter [7890/9600]; Loss 2.82; LR 1.00e-06; Iter time 0.04; ETA 0:01:11; Mem 2943.16MB
+Epoch [164/200]; Iter [7900/9600]; Loss 2.64; LR 1.00e-06; Iter time 0.04; ETA 0:01:12; Mem 2943.16MB
+Epoch [164/200]; Iter [7910/9600]; Loss 2.88; LR 1.00e-06; Iter time 0.04; ETA 0:01:12; Mem 2943.16MB
+Epoch [165/200]; Iter [7920/9600]; Loss 2.65; LR 1.00e-06; Iter time 0.04; ETA 0:01:09; Mem 2943.16MB
+Epoch [165/200]; Iter [7930/9600]; Loss 2.91; LR 1.00e-06; Iter time 0.04; ETA 0:01:10; Mem 2943.16MB
+Epoch [165/200]; Iter [7940/9600]; Loss 2.60; LR 1.00e-06; Iter time 0.04; ETA 0:01:08; Mem 2943.16MB
+Epoch [165/200]; Iter [7950/9600]; Loss 2.89; LR 1.00e-06; Iter time 0.04; ETA 0:01:08; Mem 2943.16MB
+Epoch [165/200]; Iter [7960/9600]; Loss 3.09; LR 1.00e-06; Iter time 0.04; ETA 0:01:09; Mem 2943.16MB
+Epoch [166/200]; Iter [7970/9600]; Loss 2.98; LR 1.00e-06; Iter time 0.04; ETA 0:01:06; Mem 2943.16MB
+Epoch [166/200]; Iter [7980/9600]; Loss 2.66; LR 1.00e-06; Iter time 0.04; ETA 0:01:08; Mem 2943.16MB
+Epoch [166/200]; Iter [7990/9600]; Loss 3.36; LR 1.00e-06; Iter time 0.04; ETA 0:01:06; Mem 2943.16MB
+Epoch [166/200]; Iter [8000/9600]; Loss 2.71; LR 1.00e-06; Iter time 0.04; ETA 0:01:08; Mem 2943.16MB
+Epoch [166/200]; Iter [8010/9600]; Loss 2.50; LR 1.00e-06; Iter time 0.04; ETA 0:01:07; Mem 2943.16MB
+Epoch [167/200]; Iter [8020/9600]; Loss 3.27; LR 1.00e-06; Iter time 0.04; ETA 0:01:04; Mem 2943.16MB
+Epoch [167/200]; Iter [8030/9600]; Loss 2.81; LR 1.00e-06; Iter time 0.04; ETA 0:01:04; Mem 2943.16MB
+Epoch [167/200]; Iter [8040/9600]; Loss 2.88; LR 1.00e-06; Iter time 0.04; ETA 0:01:05; Mem 2943.16MB
+Epoch [167/200]; Iter [8050/9600]; Loss 2.63; LR 1.00e-06; Iter time 0.04; ETA 0:01:06; Mem 2943.16MB
+Epoch [167/200]; Iter [8060/9600]; Loss 2.91; LR 1.00e-06; Iter time 0.04; ETA 0:01:03; Mem 2943.16MB
+Epoch [168/200]; Iter [8070/9600]; Loss 2.92; LR 1.00e-06; Iter time 0.04; ETA 0:01:03; Mem 2943.16MB
+Epoch [168/200]; Iter [8080/9600]; Loss 2.71; LR 1.00e-06; Iter time 0.04; ETA 0:01:02; Mem 2943.16MB
+Epoch [168/200]; Iter [8090/9600]; Loss 3.07; LR 1.00e-06; Iter time 0.04; ETA 0:01:04; Mem 2943.16MB
+Evaluate [168/200]; Batch [0/48]; Iter time 0.03; Mem 2943.16MB
+Evaluate [168/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [168/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [168/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [168/200]; Batch [40/48]; Iter time 0.03; Mem 2943.16MB
+========================================
+Evaluate Epoch [168/200]
+多标签分类正确率（每个标签）: 88.17%
+严重性分类准确率: 62.30%
+========================================
+Epoch [168/200]; Iter [8100/9600]; Loss 2.67; LR 1.00e-06; Iter time 0.04; ETA 0:01:05; Mem 2943.16MB
+Epoch [168/200]; Iter [8110/9600]; Loss 3.12; LR 1.00e-06; Iter time 0.04; ETA 0:01:02; Mem 2943.16MB
+Epoch [169/200]; Iter [8120/9600]; Loss 2.78; LR 1.00e-06; Iter time 0.04; ETA 0:01:01; Mem 2943.16MB
+Epoch [169/200]; Iter [8130/9600]; Loss 3.13; LR 1.00e-06; Iter time 0.04; ETA 0:01:00; Mem 2943.16MB
+Epoch [169/200]; Iter [8140/9600]; Loss 2.93; LR 1.00e-06; Iter time 0.04; ETA 0:01:00; Mem 2943.16MB
+Epoch [169/200]; Iter [8150/9600]; Loss 3.03; LR 1.00e-06; Iter time 0.04; ETA 0:01:00; Mem 2943.16MB
+Epoch [170/200]; Iter [8160/9600]; Loss 2.70; LR 1.00e-06; Iter time 0.04; ETA 0:00:59; Mem 2943.16MB
+Epoch [170/200]; Iter [8170/9600]; Loss 2.82; LR 1.00e-06; Iter time 0.04; ETA 0:01:00; Mem 2943.16MB
+Epoch [170/200]; Iter [8180/9600]; Loss 3.34; LR 1.00e-06; Iter time 0.04; ETA 0:00:59; Mem 2943.16MB
+Epoch [170/200]; Iter [8190/9600]; Loss 2.93; LR 1.00e-06; Iter time 0.04; ETA 0:01:01; Mem 2943.16MB
+Epoch [170/200]; Iter [8200/9600]; Loss 2.84; LR 1.00e-06; Iter time 0.05; ETA 0:01:03; Mem 2943.16MB
+Epoch [171/200]; Iter [8210/9600]; Loss 2.68; LR 1.00e-06; Iter time 0.04; ETA 0:00:59; Mem 2943.16MB
+Epoch [171/200]; Iter [8220/9600]; Loss 3.08; LR 1.00e-06; Iter time 0.04; ETA 0:00:57; Mem 2943.16MB
+Epoch [171/200]; Iter [8230/9600]; Loss 2.60; LR 1.00e-06; Iter time 0.04; ETA 0:00:57; Mem 2943.16MB
+Epoch [171/200]; Iter [8240/9600]; Loss 2.95; LR 1.00e-06; Iter time 0.04; ETA 0:00:56; Mem 2943.16MB
+Epoch [171/200]; Iter [8250/9600]; Loss 3.09; LR 1.00e-06; Iter time 0.04; ETA 0:00:57; Mem 2943.16MB
+Epoch [172/200]; Iter [8260/9600]; Loss 2.61; LR 1.00e-06; Iter time 0.04; ETA 0:00:58; Mem 2943.16MB
+Epoch [172/200]; Iter [8270/9600]; Loss 2.78; LR 1.00e-06; Iter time 0.04; ETA 0:00:55; Mem 2943.16MB
+Epoch [172/200]; Iter [8280/9600]; Loss 3.00; LR 1.00e-06; Iter time 0.04; ETA 0:00:55; Mem 2943.16MB
+Epoch [172/200]; Iter [8290/9600]; Loss 3.00; LR 1.00e-06; Iter time 0.04; ETA 0:00:55; Mem 2943.16MB
+Epoch [172/200]; Iter [8300/9600]; Loss 3.01; LR 1.00e-06; Iter time 0.04; ETA 0:00:54; Mem 2943.16MB
+Epoch [173/200]; Iter [8310/9600]; Loss 3.41; LR 1.00e-06; Iter time 0.04; ETA 0:00:54; Mem 2943.16MB
+Epoch [173/200]; Iter [8320/9600]; Loss 2.73; LR 1.00e-06; Iter time 0.04; ETA 0:00:52; Mem 2943.16MB
+Epoch [173/200]; Iter [8330/9600]; Loss 2.74; LR 1.00e-06; Iter time 0.04; ETA 0:00:52; Mem 2943.16MB
+Epoch [173/200]; Iter [8340/9600]; Loss 3.24; LR 1.00e-06; Iter time 0.04; ETA 0:00:53; Mem 2943.16MB
+Epoch [173/200]; Iter [8350/9600]; Loss 2.96; LR 1.00e-06; Iter time 0.04; ETA 0:00:53; Mem 2943.16MB
+Epoch [174/200]; Iter [8360/9600]; Loss 2.65; LR 1.00e-06; Iter time 0.04; ETA 0:00:51; Mem 2943.16MB
+Epoch [174/200]; Iter [8370/9600]; Loss 3.06; LR 1.00e-06; Iter time 0.04; ETA 0:00:51; Mem 2943.16MB
+Epoch [174/200]; Iter [8380/9600]; Loss 2.46; LR 1.00e-06; Iter time 0.04; ETA 0:00:51; Mem 2943.16MB
+Epoch [174/200]; Iter [8390/9600]; Loss 3.19; LR 1.00e-06; Iter time 0.04; ETA 0:00:51; Mem 2943.16MB
+Evaluate [174/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [174/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [174/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [174/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [174/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [174/200]
+多标签分类正确率（每个标签）: 87.59%
+严重性分类准确率: 68.06%
+========================================
+Epoch [175/200]; Iter [8400/9600]; Loss 3.06; LR 1.00e-06; Iter time 0.04; ETA 0:00:50; Mem 2943.16MB
+Epoch [175/200]; Iter [8410/9600]; Loss 3.03; LR 1.00e-06; Iter time 0.04; ETA 0:00:50; Mem 2943.16MB
+Epoch [175/200]; Iter [8420/9600]; Loss 2.82; LR 1.00e-06; Iter time 0.04; ETA 0:00:49; Mem 2943.16MB
+Epoch [175/200]; Iter [8430/9600]; Loss 2.97; LR 1.00e-06; Iter time 0.04; ETA 0:00:48; Mem 2943.16MB
+Epoch [175/200]; Iter [8440/9600]; Loss 2.90; LR 1.00e-06; Iter time 0.04; ETA 0:00:48; Mem 2943.16MB
+Epoch [176/200]; Iter [8450/9600]; Loss 2.69; LR 1.00e-06; Iter time 0.04; ETA 0:00:46; Mem 2943.16MB
+Epoch [176/200]; Iter [8460/9600]; Loss 2.68; LR 1.00e-06; Iter time 0.04; ETA 0:00:47; Mem 2943.16MB
+Epoch [176/200]; Iter [8470/9600]; Loss 2.81; LR 1.00e-06; Iter time 0.04; ETA 0:00:46; Mem 2943.16MB
+Epoch [176/200]; Iter [8480/9600]; Loss 2.91; LR 1.00e-06; Iter time 0.04; ETA 0:00:46; Mem 2943.16MB
+Epoch [176/200]; Iter [8490/9600]; Loss 3.11; LR 1.00e-06; Iter time 0.04; ETA 0:00:45; Mem 2943.16MB
+Epoch [177/200]; Iter [8500/9600]; Loss 2.80; LR 1.00e-06; Iter time 0.04; ETA 0:00:45; Mem 2943.16MB
+Epoch [177/200]; Iter [8510/9600]; Loss 2.93; LR 1.00e-06; Iter time 0.04; ETA 0:00:44; Mem 2943.16MB
+Epoch [177/200]; Iter [8520/9600]; Loss 3.09; LR 1.00e-06; Iter time 0.04; ETA 0:00:44; Mem 2943.16MB
+Epoch [177/200]; Iter [8530/9600]; Loss 2.58; LR 1.00e-06; Iter time 0.04; ETA 0:00:43; Mem 2943.16MB
+Epoch [177/200]; Iter [8540/9600]; Loss 3.02; LR 1.00e-06; Iter time 0.04; ETA 0:00:44; Mem 2943.16MB
+Epoch [178/200]; Iter [8550/9600]; Loss 2.91; LR 1.00e-06; Iter time 0.04; ETA 0:00:43; Mem 2943.16MB
+Epoch [178/200]; Iter [8560/9600]; Loss 3.03; LR 1.00e-06; Iter time 0.04; ETA 0:00:45; Mem 2943.16MB
+Epoch [178/200]; Iter [8570/9600]; Loss 2.92; LR 1.00e-06; Iter time 0.04; ETA 0:00:44; Mem 2943.16MB
+Epoch [178/200]; Iter [8580/9600]; Loss 2.51; LR 1.00e-06; Iter time 0.04; ETA 0:00:44; Mem 2943.16MB
+Epoch [178/200]; Iter [8590/9600]; Loss 3.25; LR 1.00e-06; Iter time 0.04; ETA 0:00:43; Mem 2943.16MB
+Epoch [179/200]; Iter [8600/9600]; Loss 2.72; LR 1.00e-06; Iter time 0.04; ETA 0:00:42; Mem 2943.16MB
+Epoch [179/200]; Iter [8610/9600]; Loss 3.11; LR 1.00e-06; Iter time 0.04; ETA 0:00:41; Mem 2943.16MB
+Epoch [179/200]; Iter [8620/9600]; Loss 3.17; LR 1.00e-06; Iter time 0.04; ETA 0:00:42; Mem 2943.16MB
+Epoch [179/200]; Iter [8630/9600]; Loss 3.03; LR 1.00e-06; Iter time 0.04; ETA 0:00:41; Mem 2943.16MB
+Epoch [180/200]; Iter [8640/9600]; Loss 2.74; LR 1.00e-06; Iter time 0.04; ETA 0:00:40; Mem 2943.16MB
+Epoch [180/200]; Iter [8650/9600]; Loss 3.04; LR 1.00e-06; Iter time 0.04; ETA 0:00:41; Mem 2943.16MB
+Epoch [180/200]; Iter [8660/9600]; Loss 2.88; LR 1.00e-06; Iter time 0.04; ETA 0:00:39; Mem 2943.16MB
+Epoch [180/200]; Iter [8670/9600]; Loss 2.61; LR 1.00e-06; Iter time 0.04; ETA 0:00:40; Mem 2943.16MB
+Epoch [180/200]; Iter [8680/9600]; Loss 3.06; LR 1.00e-06; Iter time 0.04; ETA 0:00:40; Mem 2943.16MB
+Epoch [181/200]; Iter [8690/9600]; Loss 2.72; LR 1.00e-06; Iter time 0.04; ETA 0:00:38; Mem 2943.16MB
+Evaluate [181/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [181/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [181/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [181/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [181/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [181/200]
+多标签分类正确率（每个标签）: 87.54%
+严重性分类准确率: 65.71%
+========================================
+Epoch [181/200]; Iter [8700/9600]; Loss 2.70; LR 1.00e-06; Iter time 0.04; ETA 0:00:38; Mem 2943.16MB
+Epoch [181/200]; Iter [8710/9600]; Loss 2.99; LR 1.00e-06; Iter time 0.04; ETA 0:00:38; Mem 2943.16MB
+Epoch [181/200]; Iter [8720/9600]; Loss 2.87; LR 1.00e-06; Iter time 0.04; ETA 0:00:37; Mem 2943.16MB
+Epoch [181/200]; Iter [8730/9600]; Loss 2.84; LR 1.00e-06; Iter time 0.04; ETA 0:00:38; Mem 2943.16MB
+Epoch [182/200]; Iter [8740/9600]; Loss 2.81; LR 1.00e-06; Iter time 0.04; ETA 0:00:35; Mem 2943.16MB
+Epoch [182/200]; Iter [8750/9600]; Loss 2.54; LR 1.00e-06; Iter time 0.04; ETA 0:00:36; Mem 2943.16MB
+Epoch [182/200]; Iter [8760/9600]; Loss 2.79; LR 1.00e-06; Iter time 0.04; ETA 0:00:35; Mem 2943.16MB
+Epoch [182/200]; Iter [8770/9600]; Loss 2.95; LR 1.00e-06; Iter time 0.04; ETA 0:00:34; Mem 2943.16MB
+Epoch [182/200]; Iter [8780/9600]; Loss 2.92; LR 1.00e-06; Iter time 0.04; ETA 0:00:34; Mem 2943.16MB
+Epoch [183/200]; Iter [8790/9600]; Loss 3.11; LR 1.00e-06; Iter time 0.04; ETA 0:00:34; Mem 2943.16MB
+Epoch [183/200]; Iter [8800/9600]; Loss 2.76; LR 1.00e-06; Iter time 0.04; ETA 0:00:33; Mem 2943.16MB
+Epoch [183/200]; Iter [8810/9600]; Loss 2.49; LR 1.00e-06; Iter time 0.04; ETA 0:00:34; Mem 2943.16MB
+Epoch [183/200]; Iter [8820/9600]; Loss 3.49; LR 1.00e-06; Iter time 0.04; ETA 0:00:32; Mem 2943.16MB
+Epoch [183/200]; Iter [8830/9600]; Loss 2.84; LR 1.00e-06; Iter time 0.04; ETA 0:00:32; Mem 2943.16MB
+Epoch [184/200]; Iter [8840/9600]; Loss 2.65; LR 1.00e-06; Iter time 0.04; ETA 0:00:31; Mem 2943.16MB
+Epoch [184/200]; Iter [8850/9600]; Loss 3.07; LR 1.00e-06; Iter time 0.04; ETA 0:00:31; Mem 2943.16MB
+Epoch [184/200]; Iter [8860/9600]; Loss 3.08; LR 1.00e-06; Iter time 0.04; ETA 0:00:30; Mem 2943.16MB
+Epoch [184/200]; Iter [8870/9600]; Loss 2.61; LR 1.00e-06; Iter time 0.04; ETA 0:00:30; Mem 2943.16MB
+Epoch [185/200]; Iter [8880/9600]; Loss 2.75; LR 1.00e-06; Iter time 0.04; ETA 0:00:30; Mem 2943.16MB
+Epoch [185/200]; Iter [8890/9600]; Loss 2.89; LR 1.00e-06; Iter time 0.04; ETA 0:00:30; Mem 2943.16MB
+Epoch [185/200]; Iter [8900/9600]; Loss 3.17; LR 1.00e-06; Iter time 0.04; ETA 0:00:29; Mem 2943.16MB
+Epoch [185/200]; Iter [8910/9600]; Loss 3.01; LR 1.00e-06; Iter time 0.04; ETA 0:00:28; Mem 2943.16MB
+Epoch [185/200]; Iter [8920/9600]; Loss 2.81; LR 1.00e-06; Iter time 0.04; ETA 0:00:28; Mem 2943.16MB
+Epoch [186/200]; Iter [8930/9600]; Loss 2.79; LR 1.00e-06; Iter time 0.04; ETA 0:00:28; Mem 2943.16MB
+Epoch [186/200]; Iter [8940/9600]; Loss 2.80; LR 1.00e-06; Iter time 0.04; ETA 0:00:28; Mem 2943.16MB
+Epoch [186/200]; Iter [8950/9600]; Loss 2.56; LR 1.00e-06; Iter time 0.04; ETA 0:00:27; Mem 2943.16MB
+Epoch [186/200]; Iter [8960/9600]; Loss 3.10; LR 1.00e-06; Iter time 0.04; ETA 0:00:26; Mem 2943.16MB
+Epoch [186/200]; Iter [8970/9600]; Loss 2.62; LR 1.00e-06; Iter time 0.04; ETA 0:00:25; Mem 2943.16MB
+Epoch [187/200]; Iter [8980/9600]; Loss 2.91; LR 1.00e-06; Iter time 0.04; ETA 0:00:25; Mem 2943.16MB
+Epoch [187/200]; Iter [8990/9600]; Loss 2.81; LR 1.00e-06; Iter time 0.04; ETA 0:00:25; Mem 2943.16MB
+Evaluate [187/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [187/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [187/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [187/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [187/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [187/200]
+多标签分类正确率（每个标签）: 88.06%
+严重性分类准确率: 64.40%
+========================================
+Epoch [187/200]; Iter [9000/9600]; Loss 2.85; LR 1.00e-06; Iter time 0.04; ETA 0:00:25; Mem 2943.16MB
+Epoch [187/200]; Iter [9010/9600]; Loss 2.77; LR 1.00e-06; Iter time 0.04; ETA 0:00:24; Mem 2943.16MB
+Epoch [187/200]; Iter [9020/9600]; Loss 2.81; LR 1.00e-06; Iter time 0.04; ETA 0:00:24; Mem 2943.16MB
+Epoch [188/200]; Iter [9030/9600]; Loss 2.85; LR 1.00e-06; Iter time 0.04; ETA 0:00:23; Mem 2943.16MB
+Epoch [188/200]; Iter [9040/9600]; Loss 2.65; LR 1.00e-06; Iter time 0.04; ETA 0:00:23; Mem 2943.16MB
+Epoch [188/200]; Iter [9050/9600]; Loss 2.91; LR 1.00e-06; Iter time 0.04; ETA 0:00:23; Mem 2943.16MB
+Epoch [188/200]; Iter [9060/9600]; Loss 3.01; LR 1.00e-06; Iter time 0.04; ETA 0:00:22; Mem 2943.16MB
+Epoch [188/200]; Iter [9070/9600]; Loss 3.01; LR 1.00e-06; Iter time 0.04; ETA 0:00:22; Mem 2943.16MB
+Epoch [189/200]; Iter [9080/9600]; Loss 2.64; LR 1.00e-06; Iter time 0.04; ETA 0:00:23; Mem 2943.16MB
+Epoch [189/200]; Iter [9090/9600]; Loss 2.69; LR 1.00e-06; Iter time 0.04; ETA 0:00:21; Mem 2943.16MB
+Epoch [189/200]; Iter [9100/9600]; Loss 3.09; LR 1.00e-06; Iter time 0.04; ETA 0:00:21; Mem 2943.16MB
+Epoch [189/200]; Iter [9110/9600]; Loss 2.58; LR 1.00e-06; Iter time 0.04; ETA 0:00:20; Mem 2943.16MB
+Epoch [190/200]; Iter [9120/9600]; Loss 3.51; LR 1.00e-06; Iter time 0.04; ETA 0:00:20; Mem 2943.16MB
+Epoch [190/200]; Iter [9130/9600]; Loss 2.86; LR 1.00e-06; Iter time 0.04; ETA 0:00:20; Mem 2943.16MB
+Epoch [190/200]; Iter [9140/9600]; Loss 2.79; LR 1.00e-06; Iter time 0.04; ETA 0:00:18; Mem 2943.16MB
+Epoch [190/200]; Iter [9150/9600]; Loss 2.75; LR 1.00e-06; Iter time 0.04; ETA 0:00:18; Mem 2943.16MB
+Epoch [190/200]; Iter [9160/9600]; Loss 3.05; LR 1.00e-06; Iter time 0.04; ETA 0:00:18; Mem 2943.16MB
+Epoch [191/200]; Iter [9170/9600]; Loss 3.04; LR 1.00e-06; Iter time 0.04; ETA 0:00:17; Mem 2943.16MB
+Epoch [191/200]; Iter [9180/9600]; Loss 3.40; LR 1.00e-06; Iter time 0.04; ETA 0:00:17; Mem 2943.16MB
+Epoch [191/200]; Iter [9190/9600]; Loss 2.65; LR 1.00e-06; Iter time 0.04; ETA 0:00:17; Mem 2943.16MB
+Epoch [191/200]; Iter [9200/9600]; Loss 2.78; LR 1.00e-06; Iter time 0.04; ETA 0:00:16; Mem 2943.16MB
+Epoch [191/200]; Iter [9210/9600]; Loss 2.82; LR 1.00e-06; Iter time 0.04; ETA 0:00:16; Mem 2943.16MB
+Epoch [192/200]; Iter [9220/9600]; Loss 2.77; LR 1.00e-06; Iter time 0.04; ETA 0:00:15; Mem 2943.16MB
+Epoch [192/200]; Iter [9230/9600]; Loss 3.25; LR 1.00e-06; Iter time 0.04; ETA 0:00:15; Mem 2943.16MB
+Epoch [192/200]; Iter [9240/9600]; Loss 2.60; LR 1.00e-06; Iter time 0.04; ETA 0:00:15; Mem 2943.16MB
+Epoch [192/200]; Iter [9250/9600]; Loss 2.79; LR 1.00e-06; Iter time 0.04; ETA 0:00:14; Mem 2943.16MB
+Epoch [192/200]; Iter [9260/9600]; Loss 3.15; LR 1.00e-06; Iter time 0.04; ETA 0:00:14; Mem 2943.16MB
+Epoch [193/200]; Iter [9270/9600]; Loss 2.79; LR 1.00e-06; Iter time 0.04; ETA 0:00:14; Mem 2943.16MB
+Epoch [193/200]; Iter [9280/9600]; Loss 2.63; LR 1.00e-06; Iter time 0.04; ETA 0:00:13; Mem 2943.16MB
+Epoch [193/200]; Iter [9290/9600]; Loss 2.83; LR 1.00e-06; Iter time 0.04; ETA 0:00:12; Mem 2943.16MB
+Evaluate [193/200]; Batch [0/48]; Iter time 0.03; Mem 2943.16MB
+Evaluate [193/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [193/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [193/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [193/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [193/200]
+多标签分类正确率（每个标签）: 88.59%
+严重性分类准确率: 69.11%
+========================================
+Epoch [193/200] saved current best val checkpoint at checkpoint_best.pth; classification_accuracy 0.8858638743455497; severity_accuracy 0.6910994764397905 
+Epoch [193/200]; Iter [9300/9600]; Loss 3.14; LR 1.00e-06; Iter time 0.04; ETA 0:00:12; Mem 2943.16MB
+Epoch [193/200]; Iter [9310/9600]; Loss 2.98; LR 1.00e-06; Iter time 0.04; ETA 0:00:12; Mem 2943.16MB
+Epoch [194/200]; Iter [9320/9600]; Loss 2.65; LR 1.00e-06; Iter time 0.04; ETA 0:00:12; Mem 2943.16MB
+Epoch [194/200]; Iter [9330/9600]; Loss 2.68; LR 1.00e-06; Iter time 0.04; ETA 0:00:11; Mem 2943.16MB
+Epoch [194/200]; Iter [9340/9600]; Loss 2.94; LR 1.00e-06; Iter time 0.04; ETA 0:00:11; Mem 2943.16MB
+Epoch [194/200]; Iter [9350/9600]; Loss 3.16; LR 1.00e-06; Iter time 0.04; ETA 0:00:10; Mem 2943.16MB
+Epoch [195/200]; Iter [9360/9600]; Loss 3.14; LR 1.00e-06; Iter time 0.04; ETA 0:00:10; Mem 2943.16MB
+Epoch [195/200]; Iter [9370/9600]; Loss 2.48; LR 1.00e-06; Iter time 0.05; ETA 0:00:10; Mem 2943.16MB
+Epoch [195/200]; Iter [9380/9600]; Loss 3.14; LR 1.00e-06; Iter time 0.05; ETA 0:00:10; Mem 2943.16MB
+Epoch [195/200]; Iter [9390/9600]; Loss 2.62; LR 1.00e-06; Iter time 0.05; ETA 0:00:09; Mem 2943.16MB
+Epoch [195/200]; Iter [9400/9600]; Loss 3.18; LR 1.00e-06; Iter time 0.04; ETA 0:00:08; Mem 2943.16MB
+Epoch [196/200]; Iter [9410/9600]; Loss 2.96; LR 1.00e-06; Iter time 0.04; ETA 0:00:08; Mem 2943.16MB
+Epoch [196/200]; Iter [9420/9600]; Loss 2.40; LR 1.00e-06; Iter time 0.05; ETA 0:00:08; Mem 2943.16MB
+Epoch [196/200]; Iter [9430/9600]; Loss 2.52; LR 1.00e-06; Iter time 0.04; ETA 0:00:07; Mem 2943.16MB
+Epoch [196/200]; Iter [9440/9600]; Loss 3.31; LR 1.00e-06; Iter time 0.05; ETA 0:00:07; Mem 2943.16MB
+Epoch [196/200]; Iter [9450/9600]; Loss 3.08; LR 1.00e-06; Iter time 0.04; ETA 0:00:06; Mem 2943.16MB
+Epoch [197/200]; Iter [9460/9600]; Loss 3.04; LR 1.00e-06; Iter time 0.04; ETA 0:00:06; Mem 2943.16MB
+Epoch [197/200]; Iter [9470/9600]; Loss 3.15; LR 1.00e-06; Iter time 0.04; ETA 0:00:05; Mem 2943.16MB
+Epoch [197/200]; Iter [9480/9600]; Loss 3.14; LR 1.00e-06; Iter time 0.05; ETA 0:00:05; Mem 2943.16MB
+Epoch [197/200]; Iter [9490/9600]; Loss 2.55; LR 1.00e-06; Iter time 0.04; ETA 0:00:04; Mem 2943.16MB
+Epoch [197/200]; Iter [9500/9600]; Loss 2.67; LR 1.00e-06; Iter time 0.05; ETA 0:00:04; Mem 2943.16MB
+Epoch [198/200]; Iter [9510/9600]; Loss 2.90; LR 1.00e-06; Iter time 0.05; ETA 0:00:04; Mem 2943.16MB
+Epoch [198/200]; Iter [9520/9600]; Loss 2.69; LR 1.00e-06; Iter time 0.04; ETA 0:00:03; Mem 2943.16MB
+Epoch [198/200]; Iter [9530/9600]; Loss 2.72; LR 1.00e-06; Iter time 0.04; ETA 0:00:03; Mem 2943.16MB
+Epoch [198/200]; Iter [9540/9600]; Loss 3.14; LR 1.00e-06; Iter time 0.05; ETA 0:00:02; Mem 2943.16MB
+Epoch [198/200]; Iter [9550/9600]; Loss 2.81; LR 1.00e-06; Iter time 0.04; ETA 0:00:02; Mem 2943.16MB
+Epoch [199/200]; Iter [9560/9600]; Loss 2.92; LR 1.00e-06; Iter time 0.04; ETA 0:00:01; Mem 2943.16MB
+Epoch [199/200]; Iter [9570/9600]; Loss 2.95; LR 1.00e-06; Iter time 0.04; ETA 0:00:01; Mem 2943.16MB
+Epoch [199/200]; Iter [9580/9600]; Loss 2.76; LR 1.00e-06; Iter time 0.04; ETA 0:00:00; Mem 2943.16MB
+Epoch [199/200]; Iter [9590/9600]; Loss 2.98; LR 1.00e-06; Iter time 0.04; ETA 0:00:00; Mem 2943.16MB
+Evaluate [199/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [199/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [199/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [199/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [199/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [199/200]
+多标签分类正确率（每个标签）: 88.59%
+严重性分类准确率: 64.14%
+========================================
+Evaluate [199/200]; Batch [0/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [199/200]; Batch [10/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [199/200]; Batch [20/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [199/200]; Batch [30/48]; Iter time 0.02; Mem 2943.16MB
+Evaluate [199/200]; Batch [40/48]; Iter time 0.02; Mem 2943.16MB
+========================================
+Evaluate Epoch [199/200]
+多标签分类正确率（每个标签）: 89.06%
+严重性分类准确率: 66.23%
+========================================
